@@ -2,7 +2,7 @@
   "name": "drd-plus/rolls-on",
   "license": "MIT",
   "type": "project",
-  "description": "Drd+ rolls by dices on specific situations",
+  "description": "Drd+ rolls by dices covering specific situations",
   "autoload": {
     "psr-4": {
       "DrdPlus\\": "DrdPlus/"
@@ -11,7 +11,9 @@
   "require": {
     "php": ">=5.5.0",
     "granam/strict-object": "dev-master",
-    "drd/dice-roll": "dev-master"
+    "drd/dice-roll": "dev-master",
+    "granam/integer": "dev-master",
+    "granam/boolean": "dev-master"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.4",
