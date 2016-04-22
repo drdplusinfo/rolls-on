@@ -14,7 +14,7 @@ class BaseRollOnSuccess extends StrictObject implements BooleanInterface
     /**
      * @var int
      */
-    private $propertyValue;
+    private $preconditionsSum;
     /**
      * @var Roll
      */
@@ -22,13 +22,13 @@ class BaseRollOnSuccess extends StrictObject implements BooleanInterface
 
     /**
      * @param int $difficulty
-     * @param int $propertyValue
+     * @param int $preconditionsSum
      * @param Roll $roll
      */
-    public function __construct($difficulty, $propertyValue, Roll $roll)
+    public function __construct($difficulty, $preconditionsSum, Roll $roll)
     {
         $this->difficulty = $difficulty;
-        $this->propertyValue = $propertyValue;
+        $this->preconditionsSum = $preconditionsSum;
         $this->roll = $roll;
     }
 
@@ -43,9 +43,9 @@ class BaseRollOnSuccess extends StrictObject implements BooleanInterface
     /**
      * @return int
      */
-    public function getPropertyValue()
+    public function getPreconditionsSum()
     {
-        return $this->propertyValue;
+        return $this->preconditionsSum;
     }
 
     /**
@@ -77,7 +77,7 @@ class BaseRollOnSuccess extends StrictObject implements BooleanInterface
      */
     public function getValue()
     {
-        return $this->getDifficulty() <= $this->getPropertyValue() + $this->getRoll()->getValue();
+        return $this->getDifficulty() <= $this->getPreconditionsSum() + $this->getRoll()->getValue();
     }
 
     /**

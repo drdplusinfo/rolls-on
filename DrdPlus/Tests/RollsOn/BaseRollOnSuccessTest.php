@@ -12,17 +12,17 @@ class BaseRollOnSuccessTest extends TestWithMockery
      * @test
      * @dataProvider provideDifficultyAndPropertyWithRoll
      * @param $difficulty
-     * @param $propertyValue
+     * @param $preconditionsSum
      * @param Roll $roll
      * @param $shouldSuccess
      */
-    public function I_can_use_it($difficulty, $propertyValue, Roll $roll, $shouldSuccess)
+    public function I_can_use_it($difficulty, $preconditionsSum, Roll $roll, $shouldSuccess)
     {
-        $baseRollOnSuccess = new BaseRollOnSuccess($difficulty, $propertyValue, $roll);
+        $baseRollOnSuccess = new BaseRollOnSuccess($difficulty, $preconditionsSum, $roll);
 
         self::assertInstanceOf(BooleanInterface::class, $baseRollOnSuccess);
         self::assertSame($difficulty, $baseRollOnSuccess->getDifficulty());
-        self::assertSame($propertyValue, $baseRollOnSuccess->getPropertyValue());
+        self::assertSame($preconditionsSum, $baseRollOnSuccess->getPreconditionsSum());
         self::assertSame($roll, $baseRollOnSuccess->getRoll());
 
         if ($shouldSuccess) {
