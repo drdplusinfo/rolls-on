@@ -1,8 +1,8 @@
 <?php
 namespace DrdPlus\Tests\RollsOn;
 
-use Drd\DiceRoll\Roll;
 use DrdPlus\RollsOn\BaseRollOnSuccess;
+use DrdPlus\RollsOn\RollOnQuality;
 use Granam\Boolean\BooleanInterface;
 use Granam\Tests\Tools\TestWithMockery;
 
@@ -12,18 +12,16 @@ class BaseRollOnSuccessTest extends TestWithMockery
      * @test
      * @dataProvider provideDifficultyAndPropertyWithRoll
      * @param $difficulty
-     * @param $preconditionsSum
-     * @param Roll $roll
+     * @param RollOnQuality $rollOnQuality
      * @param $shouldSuccess
      */
-    public function I_can_use_it($difficulty, $preconditionsSum, Roll $roll, $shouldSuccess)
+    public function I_can_use_it($difficulty, RollOnQuality $rollOnQuality, $shouldSuccess)
     {
-        $baseRollOnSuccess = new BaseRollOnSuccess($difficulty, $preconditionsSum, $roll);
+        $baseRollOnSuccess = new BaseRollOnSuccess($difficulty, $rollOnQuality);
 
         self::assertInstanceOf(BooleanInterface::class, $baseRollOnSuccess);
         self::assertSame($difficulty, $baseRollOnSuccess->getDifficulty());
-        self::assertSame($preconditionsSum, $baseRollOnSuccess->getPreconditionsSum());
-        self::assertSame($roll, $baseRollOnSuccess->getRoll());
+        self::assertSame($rollOnQuality, $baseRollOnSuccess->getRollOnQuality());
 
         if ($shouldSuccess) {
             self::assertTrue($baseRollOnSuccess->getValue());
@@ -41,26 +39,24 @@ class BaseRollOnSuccessTest extends TestWithMockery
     public function provideDifficultyAndPropertyWithRoll()
     {
         return [
-            [123, 456, $this->createRoll(789), true],
-            [999, 23, $this->createRoll(44), false],
-            [0, 0, $this->createRoll(0), true],
-            [1, 0, $this->createRoll(0), false],
-            [1, 1, $this->createRoll(0), true],
-            [1, 1, $this->createRoll(0), true],
-            [1, 0, $this->createRoll(1), true],
+            [123, $this->createRollOnQuality(789), true],
+            [999, $this->createRollOnQuality(998), false],
+            [0, $this->createRollOnQuality(0), true],
+            [1, $this->createRollOnQuality(0), false],
+            [1, $this->createRollOnQuality(1), true],
         ];
     }
 
     /**
      * @param int $value
-     * @return \Mockery\MockInterface|Roll
+     * @return \Mockery\MockInterface|RollOnQuality
      */
-    private function createRoll($value)
+    private function createRollOnQuality($value)
     {
-        $roll = $this->mockery(Roll::class);
-        $roll->shouldReceive('getValue')
+        $rollOnQuality = $this->mockery(RollOnQuality::class);
+        $rollOnQuality->shouldReceive('getValue')
             ->andReturn($value);
 
-        return $roll;
+        return $rollOnQuality;
     }
 }

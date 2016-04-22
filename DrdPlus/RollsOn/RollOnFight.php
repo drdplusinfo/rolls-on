@@ -2,6 +2,7 @@
 namespace DrdPlus\RollsOn;
 
 use Drd\DiceRoll\Templates\Rollers\SpecificRolls\Roll2d6DrdPlus;
+use Granam\Integer\Tools\ToInteger;
 
 class RollOnFight extends RollOnSituation
 {
@@ -18,7 +19,7 @@ class RollOnFight extends RollOnSituation
     public function __construct($fightNumber, Roll2d6DrdPlus $roll2d6Plus)
     {
         parent::__construct($roll2d6Plus);
-        $this->fightNumber = $fightNumber;
+        $this->fightNumber = ToInteger::toInteger($fightNumber);
     }
 
     /**

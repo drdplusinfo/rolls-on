@@ -3,6 +3,7 @@ namespace DrdPlus\RollsOn;
 
 use Drd\DiceRoll\Roll;
 use Granam\Boolean\BooleanInterface;
+use Granam\Integer\Tools\ToInteger;
 use Granam\Strict\Object\StrictObject;
 
 class BaseRollOnSuccess extends StrictObject implements BooleanInterface
@@ -12,24 +13,18 @@ class BaseRollOnSuccess extends StrictObject implements BooleanInterface
      */
     private $difficulty;
     /**
-     * @var int
-     */
-    private $preconditionsSum;
-    /**
      * @var Roll
      */
-    private $roll;
+    private $rollOnQuality;
 
     /**
      * @param int $difficulty
-     * @param int $preconditionsSum
-     * @param Roll $roll
+     * @param RollOnQuality $rollOnQuality
      */
-    public function __construct($difficulty, $preconditionsSum, Roll $roll)
+    public function __construct($difficulty, RollOnQuality $rollOnQuality)
     {
-        $this->difficulty = $difficulty;
-        $this->preconditionsSum = $preconditionsSum;
-        $this->roll = $roll;
+        $this->difficulty = ToInteger::toInteger($difficulty);
+        $this->rollOnQuality = $rollOnQuality;
     }
 
     /**
@@ -41,19 +36,11 @@ class BaseRollOnSuccess extends StrictObject implements BooleanInterface
     }
 
     /**
-     * @return int
+     * @return RollOnQuality
      */
-    public function getPreconditionsSum()
+    public function getRollOnQuality()
     {
-        return $this->preconditionsSum;
-    }
-
-    /**
-     * @return Roll
-     */
-    public function getRoll()
-    {
-        return $this->roll;
+        return $this->rollOnQuality;
     }
 
     /**
@@ -67,17 +54,17 @@ class BaseRollOnSuccess extends StrictObject implements BooleanInterface
     /**
      * @return bool
      */
-    public function isFailed()
+    public function getValue()
     {
-        return !$this->getValue();
+        return $this->getDifficulty() <= $this->getRollOnQuality()->getValue();
     }
 
     /**
      * @return bool
      */
-    public function getValue()
+    public function isFailed()
     {
-        return $this->getDifficulty() <= $this->getPreconditionsSum() + $this->getRoll()->getValue();
+        return !$this->getValue();
     }
 
     /**
