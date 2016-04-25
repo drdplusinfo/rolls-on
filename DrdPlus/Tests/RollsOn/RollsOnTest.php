@@ -59,18 +59,18 @@ class RollsOnTest extends TestWithMockery
     /**
      * @test
      */
-    public function I_can_make_base_roll_on_success()
+    public function I_can_make_basic_roll_on_success()
     {
         $rollsOn = new RollsOn($this->createRoller2d6DrdPlus());
 
-        $baseRollOnSuccess = $rollsOn->makeBaseRollOnSuccess(
+        $basicRollOnSuccess = $rollsOn->makeBasicRollOnSuccess(
             $difficulty = 123,
             $preconditionsSum = 456,
             $this->createRoller($roll = $this->createRoll())
         );
-        self::assertInstanceOf(BaseRollOnSuccess::class, $baseRollOnSuccess);
-        self::assertSame($difficulty, $baseRollOnSuccess->getDifficulty());
-        self::assertInstanceOf(RollOnQuality::class, $rollOnQuality = $baseRollOnSuccess->getRollOnQuality());
+        self::assertInstanceOf(BasicRollOnSuccess::class, $basicRollOnSuccess);
+        self::assertSame($difficulty, $basicRollOnSuccess->getDifficulty());
+        self::assertInstanceOf(RollOnQuality::class, $rollOnQuality = $basicRollOnSuccess->getRollOnQuality());
 
         self::assertSame($roll, $rollOnQuality->getRoll());
     }

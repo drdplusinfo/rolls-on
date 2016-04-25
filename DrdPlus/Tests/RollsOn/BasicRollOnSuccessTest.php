@@ -1,12 +1,12 @@
 <?php
 namespace DrdPlus\Tests\RollsOn;
 
-use DrdPlus\RollsOn\BaseRollOnSuccess;
+use DrdPlus\RollsOn\BasicRollOnSuccess;
 use DrdPlus\RollsOn\RollOnQuality;
 use Granam\Boolean\BooleanInterface;
 use Granam\Tests\Tools\TestWithMockery;
 
-class BaseRollOnSuccessTest extends TestWithMockery
+class BasicRollOnSuccessTest extends TestWithMockery
 {
     /**
      * @test
@@ -17,22 +17,22 @@ class BaseRollOnSuccessTest extends TestWithMockery
      */
     public function I_can_use_it($difficulty, RollOnQuality $rollOnQuality, $shouldSuccess)
     {
-        $baseRollOnSuccess = new BaseRollOnSuccess($difficulty, $rollOnQuality);
+        $basicRollOnSuccess = new BasicRollOnSuccess($difficulty, $rollOnQuality);
 
-        self::assertInstanceOf(BooleanInterface::class, $baseRollOnSuccess);
-        self::assertSame($difficulty, $baseRollOnSuccess->getDifficulty());
-        self::assertSame($rollOnQuality, $baseRollOnSuccess->getRollOnQuality());
+        self::assertInstanceOf(BooleanInterface::class, $basicRollOnSuccess);
+        self::assertSame($difficulty, $basicRollOnSuccess->getDifficulty());
+        self::assertSame($rollOnQuality, $basicRollOnSuccess->getRollOnQuality());
 
         if ($shouldSuccess) {
-            self::assertTrue($baseRollOnSuccess->getValue());
-            self::assertTrue($baseRollOnSuccess->isSuccessful());
-            self::assertFalse($baseRollOnSuccess->isFailed());
-            self::assertSame('success', (string)$baseRollOnSuccess);
+            self::assertTrue($basicRollOnSuccess->getValue());
+            self::assertTrue($basicRollOnSuccess->isSuccessful());
+            self::assertFalse($basicRollOnSuccess->isFailed());
+            self::assertSame('success', (string)$basicRollOnSuccess);
         } else {
-            self::assertFalse($baseRollOnSuccess->getValue());
-            self::assertFalse($baseRollOnSuccess->isSuccessful());
-            self::assertTrue($baseRollOnSuccess->isFailed());
-            self::assertSame('fail', (string)$baseRollOnSuccess);
+            self::assertFalse($basicRollOnSuccess->getValue());
+            self::assertFalse($basicRollOnSuccess->isSuccessful());
+            self::assertTrue($basicRollOnSuccess->isFailed());
+            self::assertSame('fail', (string)$basicRollOnSuccess);
         }
     }
 

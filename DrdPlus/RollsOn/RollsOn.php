@@ -41,11 +41,11 @@ class RollsOn extends StrictObject
      * @param int $difficulty
      * @param int $preconditionsSum
      * @param Roller $roller
-     * @return BaseRollOnSuccess
+     * @return BasicRollOnSuccess
      */
-    public function makeBaseRollOnSuccess($difficulty, $preconditionsSum, Roller $roller)
+    public function makeBasicRollOnSuccess($difficulty, $preconditionsSum, Roller $roller)
     {
-        return new BaseRollOnSuccess($difficulty, $this->makeRollOnQuality($preconditionsSum, $roller));
+        return new BasicRollOnSuccess($difficulty, $this->makeRollOnQuality($preconditionsSum, $roller));
     }
 
 }

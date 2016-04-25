@@ -3,7 +3,7 @@ namespace DrdPlus\RollsOn;
 
 use Granam\Boolean\BooleanInterface;
 
-class BaseRollOnSuccess extends SimpleRollOnSuccess implements BooleanInterface
+class BasicRollOnSuccess extends SimpleRollOnSuccess implements BooleanInterface
 {
     const DEFAULT_SUCCESS_RESULT_CODE = 'success';
 

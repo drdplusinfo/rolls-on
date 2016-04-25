@@ -17,9 +17,9 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
     private $rollsOnSuccess;
 
     public function __construct(
-        SimpleRollOnSuccess $firstRollOnSuccess,
-        SimpleRollOnSuccess $secondRollOnSuccess = null,
-        SimpleRollOnSuccess $thirdRollOnSuccess = null
+        SimpleRollOnSuccess $firstSimpleRollOnSuccess,
+        SimpleRollOnSuccess $secondSimpleRollOnSuccess = null,
+        SimpleRollOnSuccess $thirdSimpleRollOnSuccess = null
     )
     {
         $this->rollsOnSuccess = $this->grabOrderedRollsOnSuccess(func_get_args());
@@ -29,20 +29,20 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
     /**
      * @param array $constructorArguments
      * @return array|SimpleRollOnSuccess[]
-     * @throws \DrdPlus\RollsOn\Exceptions\ExpectedRollsOnSuccessOnly
+     * @throws \DrdPlus\RollsOn\Exceptions\ExpectedSimpleRollsOnSuccessOnly
      * @throws \DrdPlus\RollsOn\Exceptions\EveryDifficultyShouldBeUnique
      * @throws \DrdPlus\RollsOn\Exceptions\EverySuccessCodeShouldBeUnique
      * @throws \DrdPlus\RollsOn\Exceptions\RollOnQualityHasToBeTheSame
      */
     private function grabOrderedRollsOnSuccess(array $constructorArguments)
     {
-        $rollsOnSuccess = $this->removeNulls($constructorArguments);
-        $this->guardRollsOnSuccessOnly($rollsOnSuccess);
-        $this->guardUniqueDifficulties($rollsOnSuccess);
-        $this->guardUniqueSuccessCodes($rollsOnSuccess);
-        $this->guardSameRollOnQuality($rollsOnSuccess);
+        $simpleRollsOnSuccess = $this->removeNulls($constructorArguments);
+        $this->guardSimpleRollsOnSuccessOnly($simpleRollsOnSuccess);
+        $this->guardUniqueDifficulties($simpleRollsOnSuccess);
+        $this->guardUniqueSuccessCodes($simpleRollsOnSuccess);
+        $this->guardSameRollOnQuality($simpleRollsOnSuccess);
 
-        return $this->sortByDifficulty($rollsOnSuccess);
+        return $this->sortByDifficultyDescending($simpleRollsOnSuccess);
     }
 
     private function removeNulls(array $values)
@@ -56,31 +56,31 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
     }
 
     /**
-     * @param array $onFlyRollsOnSuccess
-     * @throws \DrdPlus\RollsOn\Exceptions\ExpectedRollsOnSuccessOnly
+     * @param array $simpleRollsOnSuccess
+     * @throws \DrdPlus\RollsOn\Exceptions\ExpectedSimpleRollsOnSuccessOnly
      */
-    private function guardRollsOnSuccessOnly(array $onFlyRollsOnSuccess)
+    private function guardSimpleRollsOnSuccessOnly(array $simpleRollsOnSuccess)
     {
-        foreach ($onFlyRollsOnSuccess as $onFlyRollOnSuccess) {
-            if (!$onFlyRollOnSuccess instanceof SimpleRollOnSuccess) {
-                throw new Exceptions\ExpectedRollsOnSuccessOnly(
+        foreach ($simpleRollsOnSuccess as $simpleRollOnSuccess) {
+            if (!$simpleRollOnSuccess instanceof SimpleRollOnSuccess) {
+                throw new Exceptions\ExpectedSimpleRollsOnSuccessOnly(
                     'Expected only ' . SimpleRollOnSuccess::class . ' (or null), got '
-                    . ValueDescriber::describe($onFlyRollOnSuccess)
+                    . ValueDescriber::describe($simpleRollOnSuccess)
                 );
             }
         }
     }
 
     /**
-     * @param array|SimpleRollOnSuccess[] $rollsOnSuccess
+     * @param array|SimpleRollOnSuccess[] $simpleRollsOnSuccess
      * @throws \DrdPlus\RollsOn\Exceptions\EveryDifficultyShouldBeUnique
      */
-    private function guardUniqueDifficulties(array $rollsOnSuccess)
+    private function guardUniqueDifficulties(array $simpleRollsOnSuccess)
     {
         $difficulties = [];
-        /** @var SimpleRollOnSuccess $rollOnSuccess */
-        foreach ($rollsOnSuccess as $rollOnSuccess) {
-            $difficulties[] = $rollOnSuccess->getDifficulty();
+        /** @var SimpleRollOnSuccess $simpleRollOnSuccess */
+        foreach ($simpleRollsOnSuccess as $simpleRollOnSuccess) {
+            $difficulties[] = $simpleRollOnSuccess->getDifficulty();
         }
         if ($difficulties !== array_unique($difficulties)) {
             throw new Exceptions\EveryDifficultyShouldBeUnique(
@@ -90,15 +90,15 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
     }
 
     /**
-     * @param array|SimpleRollOnSuccess[] $rollsOnSuccess
+     * @param array|SimpleRollOnSuccess[] $simpleRollsOnSuccess
      * @throws \DrdPlus\RollsOn\Exceptions\EverySuccessCodeShouldBeUnique
      */
-    private function guardUniqueSuccessCodes(array $rollsOnSuccess)
+    private function guardUniqueSuccessCodes(array $simpleRollsOnSuccess)
     {
         $successCodes = [];
-        foreach ($rollsOnSuccess as $rollOnSuccess) {
-            if ($rollOnSuccess->isSuccessful()) {
-                $successCodes[] = $rollOnSuccess->getResultCode();
+        foreach ($simpleRollsOnSuccess as $simpleRollOnSuccess) {
+            if ($simpleRollOnSuccess->isSuccessful()) {
+                $successCodes[] = $simpleRollOnSuccess->getResultCode();
             }
         }
         if ($successCodes !== array_unique($successCodes)) {
@@ -109,18 +109,18 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
     }
 
     /**
-     * @param array|SimpleRollOnSuccess[] $rollsOnSuccess
+     * @param array|SimpleRollOnSuccess[] $simpleRollsOnSuccess
      * @throws \DrdPlus\RollsOn\Exceptions\RollOnQualityHasToBeTheSame
      */
-    private function guardSameRollOnQuality(array $rollsOnSuccess)
+    private function guardSameRollOnQuality(array $simpleRollsOnSuccess)
     {
         /** @var RollOnQuality $rollOnQuality */
         $rollOnQuality = null;
-        foreach ($rollsOnSuccess as $rollOnSuccess) {
+        foreach ($simpleRollsOnSuccess as $simpleRollOnSuccess) {
             if ($rollOnQuality === null) {
-                $rollOnQuality = $rollOnSuccess->getRollOnQuality();
+                $rollOnQuality = $simpleRollOnSuccess->getRollOnQuality();
             } else {
-                $secondRollOnQuality = $rollOnSuccess->getRollOnQuality();
+                $secondRollOnQuality = $simpleRollOnSuccess->getRollOnQuality();
                 if ($rollOnQuality->getValue() !== $secondRollOnQuality->getValue()
                     || $rollOnQuality->getPreconditionsSum() !== $secondRollOnQuality->getPreconditionsSum()
                     || $rollOnQuality->getRoll()->getValue() !== $secondRollOnQuality->getRoll()->getValue()
@@ -129,7 +129,7 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
                     throw new Exceptions\RollOnQualityHasToBeTheSame(
                         'Expected same roll of quality for every roll on success, got one with '
                         . $this->describeRollOnQuality($rollOnQuality)
-                        . ' and another with ' . $this->describeRollOnQuality($rollOnSuccess->getRollOnQuality())
+                        . ' and another with ' . $this->describeRollOnQuality($simpleRollOnSuccess->getRollOnQuality())
                     );
                 }
             }
@@ -144,32 +144,33 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
     }
 
     /**
-     * @param array|SimpleRollOnSuccess[] $rollsOnSuccess
+     * @param array|SimpleRollOnSuccess[] $simpleRollsOnSuccess
      * @return array|SimpleRollOnSuccess[]
      */
-    private function sortByDifficulty(array $rollsOnSuccess)
+    private function sortByDifficultyDescending(array $simpleRollsOnSuccess)
     {
-        usort($rollsOnSuccess, function (SimpleRollOnSuccess $rollOnSuccess, SimpleRollOnSuccess $anotherRollOnSuccess) {
-            if ($rollOnSuccess->getDifficulty() < $anotherRollOnSuccess->getDifficulty()) {
-                return -1;
-            } else { /** equation will never happen, @see \DrdPlus\RollsOn\ExtendedRollOnSuccess::guardUniqueDifficulties */
-                return 1;
+        usort($simpleRollsOnSuccess, function (SimpleRollOnSuccess $simpleRollOnSuccess, SimpleRollOnSuccess $anotherSimpleRollOnSuccess) {
+            if ($simpleRollOnSuccess->getDifficulty() < $anotherSimpleRollOnSuccess->getDifficulty()) {
+                return 1; // with lesser difficulty on top (descending order)
+            } else {
+                /** equation will never happen, @see \DrdPlus\RollsOn\ExtendedRollOnSuccess::guardUniqueDifficulties */
+                return -1; // with greater difficulty on bottom (descending order)
             }
         });
 
-        return $rollsOnSuccess;
+        return $simpleRollsOnSuccess;
     }
 
     /**
-     * @param array|SimpleRollOnSuccess[] $rollsOnSuccess
+     * @param array|SimpleRollOnSuccess[] $simpleRollsOnSuccess
      * @return RollOnQuality
      */
-    private function grabRollOnQuality(array $rollsOnSuccess)
+    private function grabRollOnQuality(array $simpleRollsOnSuccess)
     {
-        /** @var SimpleRollOnSuccess $rollOnSuccess */
-        $rollOnSuccess = current($rollsOnSuccess);
+        /** @var SimpleRollOnSuccess $simpleRollOnSuccess */
+        $simpleRollOnSuccess = current($simpleRollsOnSuccess);
 
-        return $rollOnSuccess->getRollOnQuality();
+        return $simpleRollOnSuccess->getRollOnQuality();
     }
 
     /**
@@ -185,8 +186,8 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
      */
     public function isSuccessful()
     {
-        $resultRollOnSuccess = $this->getResultRollOnSuccess();
-        if ($resultRollOnSuccess) {
+        $resultOfRollOnSuccess = $this->getResultOfRollOnSuccess();
+        if ($resultOfRollOnSuccess) {
             return true;
         }
 
@@ -196,7 +197,7 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
     /**
      * @return bool|SimpleRollOnSuccess
      */
-    protected function getResultRollOnSuccess()
+    protected function getResultOfRollOnSuccess()
     {
         foreach ($this->rollsOnSuccess as $rollOnSuccess) {
             if ($rollOnSuccess->isSuccessful()) {
@@ -220,7 +221,7 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
      */
     public function getResultCode()
     {
-        $resultRollOnSuccess = $this->getResultRollOnSuccess();
+        $resultRollOnSuccess = $this->getResultOfRollOnSuccess();
         if ($resultRollOnSuccess) {
             return $resultRollOnSuccess->getResultCode();
         }
