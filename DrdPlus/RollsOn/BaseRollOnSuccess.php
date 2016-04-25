@@ -1,54 +1,27 @@
 <?php
 namespace DrdPlus\RollsOn;
 
-use Drd\DiceRoll\Roll;
 use Granam\Boolean\BooleanInterface;
-use Granam\Integer\Tools\ToInteger;
-use Granam\Strict\Object\StrictObject;
 
-class BaseRollOnSuccess extends StrictObject implements BooleanInterface
+class BaseRollOnSuccess extends RollOnSuccess implements BooleanInterface
 {
-    /**
-     * @var int
-     */
-    private $difficulty;
-    /**
-     * @var Roll
-     */
-    private $rollOnQuality;
+    const DEFAULT_SUCCESS_RESULT_CODE = 'success';
 
     /**
      * @param int $difficulty
      * @param RollOnQuality $rollOnQuality
+     * @param string $successCode = 'success'
+     * @throws \Granam\Integer\Tools\Exceptions\WrongParameterType
+     * @throws \Granam\Integer\Tools\Exceptions\ValueLostOnCast
+     * @throws \Granam\Scalar\Tools\Exceptions\WrongParameterType
      */
-    public function __construct($difficulty, RollOnQuality $rollOnQuality)
+    public function __construct(
+        $difficulty,
+        RollOnQuality $rollOnQuality,
+        $successCode = self::DEFAULT_SUCCESS_RESULT_CODE
+    )
     {
-        $this->difficulty = ToInteger::toInteger($difficulty);
-        $this->rollOnQuality = $rollOnQuality;
-    }
-
-    /**
-     * @return int
-     */
-    public function getDifficulty()
-    {
-        return $this->difficulty;
-    }
-
-    /**
-     * @return RollOnQuality
-     */
-    public function getRollOnQuality()
-    {
-        return $this->rollOnQuality;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isSuccessful()
-    {
-        return $this->getValue();
+        parent::__construct($difficulty, $rollOnQuality, $successCode);
     }
 
     /**
@@ -56,25 +29,7 @@ class BaseRollOnSuccess extends StrictObject implements BooleanInterface
      */
     public function getValue()
     {
-        return $this->getDifficulty() <= $this->getRollOnQuality()->getValue();
-    }
-
-    /**
-     * @return bool
-     */
-    public function isFailed()
-    {
-        return !$this->getValue();
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getValue()
-            ? 'success'
-            : 'fail';
+        return $this->getResult();
     }
 
 }
