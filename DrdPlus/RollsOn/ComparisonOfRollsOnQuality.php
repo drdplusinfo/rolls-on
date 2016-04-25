@@ -22,7 +22,7 @@ class ComparisonOfRollsOnQuality extends StrictObject
      */
     public static function isGreater(RollOnQuality $greaterThan, RollOnQuality $thatOne)
     {
-        return $greaterThan->getValue() < $thatOne->getValue();
+        return $greaterThan->getValue() > $thatOne->getValue();
     }
 
     /**
