@@ -4,7 +4,7 @@ namespace DrdPlus\RollsOn;
 use Granam\Strict\Object\StrictObject;
 use Granam\Tools\ValueDescriber;
 
-class ExtendedRollOnSuccess extends StrictObject
+class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
 {
 
     /**
@@ -12,14 +12,14 @@ class ExtendedRollOnSuccess extends StrictObject
      */
     private $rollOnQuality;
     /**
-     * @var RollOnSuccess[]
+     * @var SimpleRollOnSuccess[]
      */
     private $rollsOnSuccess;
 
     public function __construct(
-        RollOnSuccess $firstRollOnSuccess,
-        RollOnSuccess $secondRollOnSuccess = null,
-        RollOnSuccess $thirdRollOnSuccess = null
+        SimpleRollOnSuccess $firstRollOnSuccess,
+        SimpleRollOnSuccess $secondRollOnSuccess = null,
+        SimpleRollOnSuccess $thirdRollOnSuccess = null
     )
     {
         $this->rollsOnSuccess = $this->grabOrderedRollsOnSuccess(func_get_args());
@@ -28,7 +28,7 @@ class ExtendedRollOnSuccess extends StrictObject
 
     /**
      * @param array $constructorArguments
-     * @return array|RollOnSuccess[]
+     * @return array|SimpleRollOnSuccess[]
      * @throws \DrdPlus\RollsOn\Exceptions\ExpectedRollsOnSuccessOnly
      * @throws \DrdPlus\RollsOn\Exceptions\EveryDifficultyShouldBeUnique
      * @throws \DrdPlus\RollsOn\Exceptions\EverySuccessCodeShouldBeUnique
@@ -62,9 +62,9 @@ class ExtendedRollOnSuccess extends StrictObject
     private function guardRollsOnSuccessOnly(array $onFlyRollsOnSuccess)
     {
         foreach ($onFlyRollsOnSuccess as $onFlyRollOnSuccess) {
-            if (!$onFlyRollOnSuccess instanceof RollOnSuccess) {
+            if (!$onFlyRollOnSuccess instanceof SimpleRollOnSuccess) {
                 throw new Exceptions\ExpectedRollsOnSuccessOnly(
-                    'Expected only ' . RollOnSuccess::class . ' (or null), got '
+                    'Expected only ' . SimpleRollOnSuccess::class . ' (or null), got '
                     . ValueDescriber::describe($onFlyRollOnSuccess)
                 );
             }
@@ -72,13 +72,13 @@ class ExtendedRollOnSuccess extends StrictObject
     }
 
     /**
-     * @param array|RollOnSuccess[] $rollsOnSuccess
+     * @param array|SimpleRollOnSuccess[] $rollsOnSuccess
      * @throws \DrdPlus\RollsOn\Exceptions\EveryDifficultyShouldBeUnique
      */
     private function guardDifficultiesUnique(array $rollsOnSuccess)
     {
         $difficulties = [];
-        /** @var RollOnSuccess $rollOnSuccess */
+        /** @var SimpleRollOnSuccess $rollOnSuccess */
         foreach ($rollsOnSuccess as $rollOnSuccess) {
             $difficulties[] = $rollOnSuccess->getDifficulty();
         }
@@ -90,7 +90,7 @@ class ExtendedRollOnSuccess extends StrictObject
     }
 
     /**
-     * @param array|RollOnSuccess[] $rollsOnSuccess
+     * @param array|SimpleRollOnSuccess[] $rollsOnSuccess
      * @throws \DrdPlus\RollsOn\Exceptions\EverySuccessCodeShouldBeUnique
      */
     private function guardSuccessCodesUnique(array $rollsOnSuccess)
@@ -107,7 +107,7 @@ class ExtendedRollOnSuccess extends StrictObject
     }
 
     /**
-     * @param array|RollOnSuccess[] $rollsOnSuccess
+     * @param array|SimpleRollOnSuccess[] $rollsOnSuccess
      * @throws \DrdPlus\RollsOn\Exceptions\RollOnQualityHasToBeTheSame
      */
     private function guardSameRollOnQuality(array $rollsOnSuccess)
@@ -127,12 +127,12 @@ class ExtendedRollOnSuccess extends StrictObject
     }
 
     /**
-     * @param array|RollOnSuccess[] $rollsOnSuccess
-     * @return array|RollOnSuccess[]
+     * @param array|SimpleRollOnSuccess[] $rollsOnSuccess
+     * @return array|SimpleRollOnSuccess[]
      */
     private function sortByDifficulty(array $rollsOnSuccess)
     {
-        usort($rollsOnSuccess, function (RollOnSuccess $rollOnSuccess, RollOnSuccess $anotherRollOnSuccess) {
+        usort($rollsOnSuccess, function (SimpleRollOnSuccess $rollOnSuccess, SimpleRollOnSuccess $anotherRollOnSuccess) {
             if ($rollOnSuccess->getDifficulty() < $anotherRollOnSuccess->getDifficulty()) {
                 return -1;
             }
@@ -147,12 +147,12 @@ class ExtendedRollOnSuccess extends StrictObject
     }
 
     /**
-     * @param array|RollOnSuccess[] $rollsOnSuccess
+     * @param array|SimpleRollOnSuccess[] $rollsOnSuccess
      * @return RollOnQuality
      */
     private function grabRollOnQuality(array $rollsOnSuccess)
     {
-        /** @var RollOnSuccess $rollOnSuccess */
+        /** @var SimpleRollOnSuccess $rollOnSuccess */
         $rollOnSuccess = current($rollsOnSuccess);
 
         return $rollOnSuccess->getRollOnQuality();
@@ -180,7 +180,7 @@ class ExtendedRollOnSuccess extends StrictObject
     }
 
     /**
-     * @return bool|RollOnSuccess
+     * @return bool|SimpleRollOnSuccess
      */
     protected function getResultRollOnSuccess()
     {
@@ -211,7 +211,7 @@ class ExtendedRollOnSuccess extends StrictObject
             return $resultRollOnSuccess->getResultCode();
         }
 
-        return RollOnSuccess::FAIL_RESULT_CODE;
+        return SimpleRollOnSuccess::FAIL_RESULT_CODE;
     }
 
     public function __toString()
