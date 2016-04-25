@@ -1,9 +1,9 @@
 <?php
-namespace DrdPlus\Tests\RollsOn;
+namespace DrdPlus\Tests\RollsOn\QualityAndSuccess;
 
-use DrdPlus\RollsOn\ComparisonOfRollsOnSuccess;
-use DrdPlus\RollsOn\RollOnQuality;
-use DrdPlus\RollsOn\RollOnSuccess;
+use DrdPlus\RollsOn\QualityAndSuccess\ComparisonOfRollsOnSuccess;
+use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
+use DrdPlus\RollsOn\QualityAndSuccess\RollOnSuccess;
 use Granam\Tests\Tools\TestWithMockery;
 
 class ComparisonOfRollsOnSuccessTest extends TestWithMockery

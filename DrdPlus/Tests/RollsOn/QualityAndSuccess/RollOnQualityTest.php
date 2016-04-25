@@ -1,8 +1,8 @@
 <?php
-namespace DrdPlus\Tests\RollsOn;
+namespace DrdPlus\Tests\RollsOn\QualityAndSuccess;
 
 use Drd\DiceRoll\Roll;
-use DrdPlus\RollsOn\RollOnQuality;
+use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use Granam\Tests\Tools\TestWithMockery;
 
 class RollOnQualityTest extends TestWithMockery

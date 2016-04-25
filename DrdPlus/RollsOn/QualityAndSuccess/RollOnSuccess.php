@@ -1,5 +1,5 @@
 <?php
-namespace DrdPlus\RollsOn;
+namespace DrdPlus\RollsOn\QualityAndSuccess;
 
 interface RollOnSuccess
 {

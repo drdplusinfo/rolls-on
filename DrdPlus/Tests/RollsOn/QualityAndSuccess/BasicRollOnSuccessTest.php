@@ -1,8 +1,8 @@
 <?php
-namespace DrdPlus\Tests\RollsOn;
+namespace DrdPlus\Tests\RollsOn\QualityAndSuccess;
 
-use DrdPlus\RollsOn\BasicRollOnSuccess;
-use DrdPlus\RollsOn\RollOnQuality;
+use DrdPlus\RollsOn\QualityAndSuccess\BasicRollOnSuccess;
+use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use Granam\Boolean\BooleanInterface;
 use Granam\Tests\Tools\TestWithMockery;
 

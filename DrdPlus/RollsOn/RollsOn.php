@@ -3,6 +3,9 @@ namespace DrdPlus\RollsOn;
 
 use Drd\DiceRoll\Roller;
 use Drd\DiceRoll\Templates\Rollers\Roller2d6DrdPlus;
+use DrdPlus\RollsOn\QualityAndSuccess\BasicRollOnSuccess;
+use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
+use DrdPlus\RollsOn\Situations\RollOnFight;
 use Granam\Strict\Object\StrictObject;
 
 class RollsOn extends StrictObject

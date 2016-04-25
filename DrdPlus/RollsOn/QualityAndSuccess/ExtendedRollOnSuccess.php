@@ -1,5 +1,5 @@
 <?php
-namespace DrdPlus\RollsOn;
+namespace DrdPlus\RollsOn\QualityAndSuccess;
 
 use Granam\Strict\Object\StrictObject;
 use Granam\Tools\ValueDescriber;
@@ -29,10 +29,10 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
     /**
      * @param array $constructorArguments
      * @return array|SimpleRollOnSuccess[]
-     * @throws \DrdPlus\RollsOn\Exceptions\ExpectedSimpleRollsOnSuccessOnly
-     * @throws \DrdPlus\RollsOn\Exceptions\EveryDifficultyShouldBeUnique
-     * @throws \DrdPlus\RollsOn\Exceptions\EverySuccessCodeShouldBeUnique
-     * @throws \DrdPlus\RollsOn\Exceptions\RollOnQualityHasToBeTheSame
+     * @throws \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\ExpectedSimpleRollsOnSuccessOnly
+     * @throws \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\EveryDifficultyShouldBeUnique
+     * @throws \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\EverySuccessCodeShouldBeUnique
+     * @throws \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\RollOnQualityHasToBeTheSame
      */
     private function grabOrderedRollsOnSuccess(array $constructorArguments)
     {
@@ -57,7 +57,7 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
 
     /**
      * @param array $simpleRollsOnSuccess
-     * @throws \DrdPlus\RollsOn\Exceptions\ExpectedSimpleRollsOnSuccessOnly
+     * @throws \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\ExpectedSimpleRollsOnSuccessOnly
      */
     private function guardSimpleRollsOnSuccessOnly(array $simpleRollsOnSuccess)
     {
@@ -73,7 +73,7 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
 
     /**
      * @param array|SimpleRollOnSuccess[] $simpleRollsOnSuccess
-     * @throws \DrdPlus\RollsOn\Exceptions\EveryDifficultyShouldBeUnique
+     * @throws \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\EveryDifficultyShouldBeUnique
      */
     private function guardUniqueDifficulties(array $simpleRollsOnSuccess)
     {
@@ -91,7 +91,7 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
 
     /**
      * @param array|SimpleRollOnSuccess[] $simpleRollsOnSuccess
-     * @throws \DrdPlus\RollsOn\Exceptions\EverySuccessCodeShouldBeUnique
+     * @throws \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\EverySuccessCodeShouldBeUnique
      */
     private function guardUniqueSuccessCodes(array $simpleRollsOnSuccess)
     {
@@ -110,7 +110,7 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
 
     /**
      * @param array|SimpleRollOnSuccess[] $simpleRollsOnSuccess
-     * @throws \DrdPlus\RollsOn\Exceptions\RollOnQualityHasToBeTheSame
+     * @throws \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\RollOnQualityHasToBeTheSame
      */
     private function guardSameRollOnQuality(array $simpleRollsOnSuccess)
     {

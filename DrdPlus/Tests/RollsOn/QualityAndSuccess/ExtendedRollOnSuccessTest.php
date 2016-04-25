@@ -1,11 +1,11 @@
 <?php
-namespace DrdPlus\Tests\RollsOn;
+namespace DrdPlus\Tests\RollsOn\QualityAndSuccess;
 
 use Drd\DiceRoll\Roll;
-use DrdPlus\RollsOn\BasicRollOnSuccess;
-use DrdPlus\RollsOn\ExtendedRollOnSuccess;
-use DrdPlus\RollsOn\RollOnQuality;
-use DrdPlus\RollsOn\SimpleRollOnSuccess;
+use DrdPlus\RollsOn\QualityAndSuccess\BasicRollOnSuccess;
+use DrdPlus\RollsOn\QualityAndSuccess\ExtendedRollOnSuccess;
+use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
+use DrdPlus\RollsOn\QualityAndSuccess\SimpleRollOnSuccess;
 use Granam\Tests\Tools\TestWithMockery;
 
 class ExtendedRollOnSuccessTest extends TestWithMockery
@@ -133,7 +133,7 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
 
     /**
      * @test
-     * @expectedException \DrdPlus\RollsOn\Exceptions\ExpectedSimpleRollsOnSuccessOnly
+     * @expectedException \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\ExpectedSimpleRollsOnSuccessOnly
      */
     public function I_can_create_it_only_from_simple_rolls_on_success()
     {
@@ -149,7 +149,7 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
 
     /**
      * @test
-     * @expectedException \DrdPlus\RollsOn\Exceptions\EveryDifficultyShouldBeUnique
+     * @expectedException \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\EveryDifficultyShouldBeUnique
      */
     public function I_can_use_only_unique_difficulties()
     {
@@ -163,7 +163,7 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
 
     /**
      * @test
-     * @expectedException \DrdPlus\RollsOn\Exceptions\EverySuccessCodeShouldBeUnique
+     * @expectedException \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\EverySuccessCodeShouldBeUnique
      */
     public function I_can_use_only_unique_success_codes()
     {
@@ -206,7 +206,7 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
     /**
      * @test
      * @dataProvider provideSimpleRollsWithDifferentRollsOnQuality
-     * @expectedException \DrdPlus\RollsOn\Exceptions\RollOnQualityHasToBeTheSame
+     * @expectedException \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\RollOnQualityHasToBeTheSame
      */
     public function I_can_not_use_different_rolls_on_quality(SimpleRollOnSuccess $firstSimpleRoll, SimpleRollOnSuccess $secondSimpleRoll)
     {

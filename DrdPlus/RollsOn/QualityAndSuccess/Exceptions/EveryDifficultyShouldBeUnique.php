@@ -1,5 +1,5 @@
 <?php
-namespace DrdPlus\RollsOn\Exceptions;
+namespace DrdPlus\RollsOn\QualityAndSuccess\Exceptions;
 
 class EveryDifficultyShouldBeUnique extends \InvalidArgumentException implements Logic
 {

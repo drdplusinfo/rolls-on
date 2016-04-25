@@ -5,6 +5,9 @@ use Drd\DiceRoll\Roll;
 use Drd\DiceRoll\Roller;
 use Drd\DiceRoll\Templates\Rollers\Roller2d6DrdPlus;
 use Drd\DiceRoll\Templates\Rollers\SpecificRolls\Roll2d6DrdPlus;
+use DrdPlus\RollsOn\QualityAndSuccess\BasicRollOnSuccess;
+use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
+use DrdPlus\RollsOn\Situations\RollOnFight;
 use Granam\Tests\Tools\TestWithMockery;
 
 class RollsOnTest extends TestWithMockery

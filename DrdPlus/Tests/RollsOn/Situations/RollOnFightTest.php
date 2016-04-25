@@ -1,7 +1,7 @@
 <?php
-namespace DrdPlus\Tests\RollsOn;
+namespace DrdPlus\Tests\RollsOn\Situations;
 
-use DrdPlus\RollsOn\RollOnFight;
+use DrdPlus\RollsOn\Situations\RollOnFight;
 
 class RollOnFightTest extends RollOnSituationTest
 {

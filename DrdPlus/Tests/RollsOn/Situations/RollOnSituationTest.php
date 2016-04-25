@@ -1,5 +1,5 @@
 <?php
-namespace DrdPlus\Tests\RollsOn;
+namespace DrdPlus\Tests\RollsOn\Situations;
 
 use Drd\DiceRoll\Templates\Rollers\SpecificRolls\Roll2d6DrdPlus;
 use Granam\Tests\Tools\TestWithMockery;
