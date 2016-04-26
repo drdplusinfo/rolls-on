@@ -21,6 +21,7 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
     public function I_can_use_it(RollOnQuality $expectedRollOnQuality, array $simpleRollsOnSuccess, $expectedResultCode, $expectingSuccess)
     {
         $extendedRollOnSuccessReflection = new \ReflectionClass(ExtendedRollOnSuccess::class);
+        /** @var ExtendedRollOnSuccess $extendedRollOnSuccess */
         $extendedRollOnSuccess = $extendedRollOnSuccessReflection->newInstanceArgs($simpleRollsOnSuccess);
 
         self::assertSame($expectedRollOnQuality, $extendedRollOnSuccess->getRollOnQuality());
@@ -41,9 +42,9 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
             [ // from single simple roll on success
                 $rollOnQuality = $this->createRollOnQuality(5 /* roll value */),
                 [
-                    $this->createSimpleRollOnSuccess(9 /* difficulty */, $rollOnQuality),
+                    $this->createSimpleRollOnSuccess(9 /* difficulty */, $rollOnQuality, false, 'what happened?'),
                 ],
-                'fail',
+                'what happened?',
                 false /* expecting failure */
             ],
             [ // from simple roll on success and basic roll on success (which is simple roll also)
@@ -65,6 +66,17 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
                 ],
                 'better success',
                 true /* expecting success */
+            ],
+            [ // from more than three simple rolls on success without success at all and non-sequential difficulty
+                $rollOnQuality = $this->createRollOnQuality(2 /* roll value */),
+                [
+                    $this->createSimpleRollOnSuccess(5 /* difficulty */, $rollOnQuality, false, 'I failed against 5'),
+                    $this->createSimpleRollOnSuccess(1 /* difficulty */, $rollOnQuality, false, 'I failed against 1'),
+                    $this->createSimpleRollOnSuccess(3 /* difficulty */, $rollOnQuality, false, 'I failed against 3'),
+                    $this->createSimpleRollOnSuccess(2 /* difficulty */, $rollOnQuality, false, 'I failed against 2'),
+                ],
+                'I failed against 1', // the lowest difficulty is used as a result
+                false /* expecting failure */
             ],
         ];
     }

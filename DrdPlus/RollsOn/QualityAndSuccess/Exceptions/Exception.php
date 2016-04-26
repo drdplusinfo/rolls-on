@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\RollsOn\QualityAndSuccess\Exceptions;
 
-interface Exception
+interface Exception extends \DrdPlus\RollsOn\Exceptions\Exception
 {
 
 }

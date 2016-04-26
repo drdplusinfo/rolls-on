@@ -9,7 +9,7 @@ use Granam\Strict\Object\StrictObject;
 class RollOnQuality extends StrictObject implements IntegerInterface
 {
     /**
-     * @var
+     * @var int
      */
     private $preconditionsSum;
     /**
@@ -24,7 +24,7 @@ class RollOnQuality extends StrictObject implements IntegerInterface
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getPreconditionsSum()
     {

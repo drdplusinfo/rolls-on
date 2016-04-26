@@ -186,18 +186,13 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
      */
     public function isSuccessful()
     {
-        $resultOfRollOnSuccess = $this->getResultOfRollOnSuccess();
-        if ($resultOfRollOnSuccess) {
-            return true;
-        }
-
-        return false;
+        return $this->getResultRollOnSuccess()->isSuccessful();
     }
 
     /**
-     * @return bool|SimpleRollOnSuccess
+     * @return SimpleRollOnSuccess
      */
-    protected function getResultOfRollOnSuccess()
+    protected function getResultRollOnSuccess()
     {
         foreach ($this->rollsOnSuccess as $rollOnSuccess) {
             if ($rollOnSuccess->isSuccessful()) {
@@ -205,7 +200,7 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
             }
         }
 
-        return false;
+        return end($this->rollsOnSuccess); // the roll with lowest (yet not passed) difficulty
     }
 
     /**
@@ -221,14 +216,12 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
      */
     public function getResultCode()
     {
-        $resultRollOnSuccess = $this->getResultOfRollOnSuccess();
-        if ($resultRollOnSuccess) {
-            return $resultRollOnSuccess->getResultCode();
-        }
-
-        return SimpleRollOnSuccess::FAIL_RESULT_CODE;
+        return $this->getResultRollOnSuccess()->getResultCode();
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getResultCode();

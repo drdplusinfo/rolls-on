@@ -20,20 +20,34 @@ class SimpleRollOnSuccess extends StrictObject implements RollOnSuccess
      * @var string
      */
     private $successCode;
+    /**
+     * @var string
+     */
+    private $failureCode;
+
+    const DEFAULT_SUCCESS_RESULT_CODE = 'success';
+    const DEFAULT_FAILURE_RESULT_CODE = 'failure';
 
     /**
      * @param int $difficulty
      * @param RollOnQuality $rollOnQuality
      * @param string $successCode
+     * @param string $failureCode
      * @throws \Granam\Integer\Tools\Exceptions\WrongParameterType
      * @throws \Granam\Integer\Tools\Exceptions\ValueLostOnCast
      * @throws \Granam\Scalar\Tools\Exceptions\WrongParameterType
      */
-    public function __construct($difficulty, RollOnQuality $rollOnQuality, $successCode)
+    public function __construct(
+        $difficulty,
+        RollOnQuality $rollOnQuality,
+        $successCode = self::DEFAULT_SUCCESS_RESULT_CODE,
+        $failureCode = self::DEFAULT_FAILURE_RESULT_CODE
+    )
     {
         $this->difficulty = ToInteger::toInteger($difficulty);
         $this->rollOnQuality = $rollOnQuality;
         $this->successCode = ToString::toString($successCode);
+        $this->failureCode = ToString::toString($failureCode);
     }
 
     /**
@@ -68,8 +82,6 @@ class SimpleRollOnSuccess extends StrictObject implements RollOnSuccess
         return $this->getDifficulty() <= $this->getRollOnQuality()->getValue();
     }
 
-    const FAIL_RESULT_CODE = 'fail';
-
     /**
      * @return string
      */
@@ -77,7 +89,7 @@ class SimpleRollOnSuccess extends StrictObject implements RollOnSuccess
     {
         return $this->isSuccessful()
             ? $this->successCode
-            : self::FAIL_RESULT_CODE;
+            : $this->failureCode;
     }
 
     /**
