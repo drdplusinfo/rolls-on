@@ -12,7 +12,6 @@
     "php": ">=5.5.0",
     "granam/strict-object": "dev-master",
     "drd/dice-roll": "dev-master",
-    "drd-plus/properties": "dev-master",
     "granam/integer": "dev-master",
     "granam/boolean": "dev-master"
   },

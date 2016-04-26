@@ -2,29 +2,21 @@
 namespace DrdPlus\RollsOn;
 
 use DrdPlus\RollsOn\QualityAndSuccess\ExtendedRollOnSuccess;
+use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use DrdPlus\RollsOn\QualityAndSuccess\SimpleRollOnSuccess;
 use Granam\Integer\IntegerInterface;
 use Granam\Tools\ValueDescriber;
 
-/**
- * @method RollOnWill getRollOnQuality
- */
 class MalusRollOnWillBecauseOfWounds extends ExtendedRollOnSuccess implements IntegerInterface
 {
-
-    /**
-     * @var RollOnWill
-     */
-    private $rollOnWill;
 
     const HIGHEST_MALUS = 'highest_malus';
     const MEDIUM_MALUS = 'medium_malus';
     const LOWEST_MALUS = 'lowest_malus';
     const WITHOUT_MALUS = 'without_malus';
 
-    public function __construct(RollOnWill $rollOnWill)
+    public function __construct(RollOnQuality $rollOnWill)
     {
-        $this->rollOnWill = $rollOnWill;
         parent::__construct(
             new SimpleRollOnSuccess(5, $rollOnWill, self::MEDIUM_MALUS, self::HIGHEST_MALUS),
             new SimpleRollOnSuccess(10, $rollOnWill, self::LOWEST_MALUS),
@@ -33,11 +25,11 @@ class MalusRollOnWillBecauseOfWounds extends ExtendedRollOnSuccess implements In
     }
 
     /**
-     * @return RollOnWill
+     * @return RollOnQuality
      */
     public function getRollOnWill()
     {
-        return $this->rollOnWill;
+        return $this->getRollOnQuality();
     }
 
     public function getValue()
