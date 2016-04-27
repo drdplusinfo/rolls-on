@@ -3,7 +3,7 @@ namespace DrdPlus\Tests\RollsOn;
 
 use Drd\DiceRoll\Roll;
 use DrdPlus\RollsOn\MalusRollOnWillBecauseOfWounds;
-use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
+use DrdPlus\RollsOn\RollOnWill;
 use Granam\Tests\Tools\TestWithMockery;
 
 class MalusRollOnWillBecauseOfWoundsTest extends TestWithMockery
@@ -18,7 +18,7 @@ class MalusRollOnWillBecauseOfWoundsTest extends TestWithMockery
     public function I_can_use_it($value, $expectedCode, $expectedMalus)
     {
         $malusRollOnWillBecauseOfWounds = new MalusRollOnWillBecauseOfWounds(
-            $rollOnWill = $this->createRollOnQuality($value)
+            $rollOnWill = $this->createRollOnWill($value)
         );
         self::assertSame($rollOnWill, $malusRollOnWillBecauseOfWounds->getRollOnWill());
         self::assertSame($rollOnWill, $malusRollOnWillBecauseOfWounds->getRollOnQuality());
@@ -40,23 +40,23 @@ class MalusRollOnWillBecauseOfWoundsTest extends TestWithMockery
 
     /**
      * @param $value
-     * @return \Mockery\MockInterface|RollOnQuality
+     * @return \Mockery\MockInterface|RollOnWill
      */
-    private function createRollOnQuality($value)
+    private function createRollOnWill($value)
     {
-        $rollOnQuality = $this->mockery(RollOnQuality::class);
-        $rollOnQuality->shouldReceive('getValue')
+        $rollOnWill = $this->mockery(RollOnWill::class);
+        $rollOnWill->shouldReceive('getValue')
             ->andReturn($value);
-        $rollOnQuality->shouldReceive('getPreconditionsSum')
+        $rollOnWill->shouldReceive('getPreconditionsSum')
             ->andReturn(123);
-        $rollOnQuality->shouldReceive('getRoll')
+        $rollOnWill->shouldReceive('getRoll')
             ->andReturn($roll = $this->mockery(Roll::class));
         $roll->shouldReceive('getValue')
             ->andReturn(456);
         $roll->shouldReceive('getRolledNumbers')
             ->andReturn([789]);
 
-        return $rollOnQuality;
+        return $rollOnWill;
     }
 
     /**
@@ -66,7 +66,7 @@ class MalusRollOnWillBecauseOfWoundsTest extends TestWithMockery
      */
     public function I_can_not_use_internally_custom_result_code()
     {
-        $broken = new BrokenMalusRollOnWillBecauseOfWounds($this->createRollOnQuality(123));
+        $broken = new BrokenMalusRollOnWillBecauseOfWounds($this->createRollOnWill(123));
         $broken->getValue();
     }
 }
