@@ -8,13 +8,13 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
 {
 
     /**
-     * @var RollOnQuality
-     */
-    private $rollOnQuality;
-    /**
      * @var SimpleRollOnSuccess[]
      */
     private $rollsOnSuccess;
+    /**
+     * @var RollOnQuality
+     */
+    private $rollOnQuality;
 
     public function __construct(
         SimpleRollOnSuccess $firstSimpleRollOnSuccess,
@@ -200,7 +200,7 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
             }
         }
 
-        return end($this->rollsOnSuccess); // the roll with lowest (yet not passed) difficulty
+        return end($this->rollsOnSuccess); // the roll with lowest (still not passed) difficulty
     }
 
     /**
