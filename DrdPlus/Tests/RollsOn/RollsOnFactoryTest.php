@@ -5,19 +5,21 @@ use Drd\DiceRoll\Roll;
 use Drd\DiceRoll\Roller;
 use Drd\DiceRoll\Templates\Rollers\Roller2d6DrdPlus;
 use Drd\DiceRoll\Templates\Rollers\SpecificRolls\Roll2d6DrdPlus;
+use DrdPlus\Properties\Base\Will;
 use DrdPlus\RollsOn\QualityAndSuccess\BasicRollOnSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use DrdPlus\RollsOn\Situations\RollOnFight;
+use DrdPlus\RollsOn\Traps\MalusRollOnWill;
 use Granam\Tests\Tools\TestWithMockery;
 
-class RollsOnTest extends TestWithMockery
+class RollsOnFactoryTest extends TestWithMockery
 {
     /**
      * @test
      */
     public function I_can_make_roll_on_fight()
     {
-        $rollsOn = new RollsOn($roller = $this->createRoller2d6DrdPlus($rollValue = 123));
+        $rollsOn = new RollsOnFactory($roller = $this->createRoller2d6DrdPlus($rollValue = 123));
         $rollOnFight = $rollsOn->makeRollOnFight($fightNumber = 55667788);
         self::assertInstanceOf(RollOnFight::class, $rollOnFight);
         self::assertSame($fightNumber, $rollOnFight->getFightNumber());
@@ -36,6 +38,8 @@ class RollsOnTest extends TestWithMockery
         if ($rollValue !== false) {
             $roll2d6DrdPlus->shouldReceive('getValue')
                 ->andReturn($rollValue);
+            $roll2d6DrdPlus->shouldReceive('getRolledNumbers')
+                ->andReturn(['foo']);
         }
 
         return $roller2d6DrdPlus;
@@ -46,7 +50,7 @@ class RollsOnTest extends TestWithMockery
      */
     public function I_can_make_roll_on_quality()
     {
-        $rollsOn = new RollsOn($this->createRoller2d6DrdPlus());
+        $rollsOn = new RollsOnFactory($this->createRoller2d6DrdPlus());
 
         $rollOnQuality = $rollsOn->makeRollOnQuality(
             $preconditionsSum = 123,
@@ -64,7 +68,7 @@ class RollsOnTest extends TestWithMockery
      */
     public function I_can_make_basic_roll_on_success()
     {
-        $rollsOn = new RollsOn($this->createRoller2d6DrdPlus());
+        $rollsOn = new RollsOnFactory($this->createRoller2d6DrdPlus());
 
         $basicRollOnSuccess = $rollsOn->makeBasicRollOnSuccess(
             $difficulty = 123,
@@ -105,4 +109,36 @@ class RollsOnTest extends TestWithMockery
 
         return $roll;
     }
+
+    /**
+     * @test
+     * @dataProvider provideMalusRollAndWill
+     * @param $rollValue
+     * @param $willValue
+     * @param $expectedMalus
+     */
+    public function I_can_make_malus_roll_on_will($rollValue, $willValue, $expectedMalus)
+    {
+        $rollsOnFactory = new RollsOnFactory($this->createRoller2d6DrdPlus($rollValue));
+
+        $malusRollOnWill = $rollsOnFactory->makeMalusRollOnWill(Will::getIt($willValue));
+        self::assertSame($expectedMalus, $malusRollOnWill->getValue());
+        self::assertInstanceOf(MalusRollOnWill::class, $malusRollOnWill);
+        self::assertInstanceOf(RollOnQuality::class, $malusRollOnWill->getRollOnWill());
+        self::assertSame($malusRollOnWill->getRollOnQuality(), $malusRollOnWill->getRollOnWill());
+        self::assertInstanceOf(RollOnQuality::class, $rollOnQuality = $malusRollOnWill->getRollOnQuality());
+    }
+
+    public function provideMalusRollAndWill()
+    {
+        return [
+            [2, 2, -3],
+            [3, 2, -2],
+            [2, 3, -2],
+            [6, 4, -1],
+            [7, 8, 0],
+            [14, 1, 0],
+        ];
+    }
+
 }

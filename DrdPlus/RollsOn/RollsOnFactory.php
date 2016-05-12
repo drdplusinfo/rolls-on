@@ -3,12 +3,15 @@ namespace DrdPlus\RollsOn;
 
 use Drd\DiceRoll\Roller;
 use Drd\DiceRoll\Templates\Rollers\Roller2d6DrdPlus;
+use DrdPlus\Properties\Base\Will;
 use DrdPlus\RollsOn\QualityAndSuccess\BasicRollOnSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use DrdPlus\RollsOn\Situations\RollOnFight;
+use DrdPlus\RollsOn\Traps\MalusRollOnWill;
+use DrdPlus\RollsOn\Traps\RollOnWill;
 use Granam\Strict\Object\StrictObject;
 
-class RollsOn extends StrictObject
+class RollsOnFactory extends StrictObject
 {
     /**
      * @var Roller2d6DrdPlus
@@ -38,6 +41,15 @@ class RollsOn extends StrictObject
     public function makeRollOnQuality($preconditionsSum, Roller $roller)
     {
         return new RollOnQuality($preconditionsSum, $roller->roll());
+    }
+
+    /**
+     * @param Will $will
+     * @return MalusRollOnWill
+     */
+    public function makeMalusRollOnWill(Will $will)
+    {
+        return new MalusRollOnWill(new RollOnWill($will, $this->roller2d6DrdPlus->roll()));
     }
 
     /**

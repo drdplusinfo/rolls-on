@@ -20,7 +20,7 @@ class SimpleRollOnSuccessTest extends TestWithMockery
         self::assertSame($difficulty, $successfulRollOn->getDifficulty());
         self::assertSame($rollOnQuality, $successfulRollOn->getRollOnQuality());
         self::assertGreaterThan($difficulty, $preconditions + $rollValue);
-        self::assertSame('success', $successfulRollOn->getResultCode());
+        self::assertSame('success', $successfulRollOn->getResult());
 
         $failedRollOn = new SimpleRollOnSuccess(
             $difficulty = 789,
@@ -29,7 +29,7 @@ class SimpleRollOnSuccessTest extends TestWithMockery
         self::assertSame($difficulty, $failedRollOn->getDifficulty());
         self::assertSame($rollOnQuality, $failedRollOn->getRollOnQuality());
         self::assertLessThan($difficulty, $preconditions + $rollValue);
-        self::assertSame('failure', $failedRollOn->getResultCode());
+        self::assertSame('failure', $failedRollOn->getResult());
 
         $withCustomSuccessCode = new SimpleRollOnSuccess(
             $difficulty = 123,
@@ -39,7 +39,7 @@ class SimpleRollOnSuccessTest extends TestWithMockery
         self::assertSame($difficulty, $withCustomSuccessCode->getDifficulty());
         self::assertSame($rollOnQuality, $withCustomSuccessCode->getRollOnQuality());
         self::assertGreaterThan($difficulty, $preconditions + $rollValue);
-        self::assertSame($successCode, $withCustomSuccessCode->getResultCode());
+        self::assertSame($successCode, $withCustomSuccessCode->getResult());
 
         $withCustomFailureCode = new SimpleRollOnSuccess(
             $difficulty = 789,
@@ -50,7 +50,7 @@ class SimpleRollOnSuccessTest extends TestWithMockery
         self::assertSame($difficulty, $withCustomFailureCode->getDifficulty());
         self::assertSame($rollOnQuality, $withCustomFailureCode->getRollOnQuality());
         self::assertLessThan($difficulty, $preconditions + $rollValue);
-        self::assertSame($failureCode, $withCustomFailureCode->getResultCode());
+        self::assertSame($failureCode, $withCustomFailureCode->getResult());
     }
 
     /**

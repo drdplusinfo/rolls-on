@@ -17,7 +17,7 @@ interface RollOnSuccess
     /**
      * @return string
      */
-    public function getResultCode();
+    public function getResult();
 
     /**
      * @return bool
