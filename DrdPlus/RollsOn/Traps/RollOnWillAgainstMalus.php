@@ -3,14 +3,13 @@ namespace DrdPlus\RollsOn\Traps;
 
 use DrdPlus\RollsOn\QualityAndSuccess\ExtendedRollOnSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\SimpleRollOnSuccess;
-use Granam\Integer\IntegerInterface;
 
 /**
  * Usable against trap by wounds for example
  *
  * @method RollOnWill getRollOnQuality
  */
-class RollOnWillAgainstMalus extends ExtendedRollOnSuccess implements IntegerInterface
+class RollOnWillAgainstMalus extends ExtendedRollOnSuccess
 {
     const HIGHEST_MALUS = -3;
     const MEDIUM_MALUS = -2;
@@ -37,7 +36,7 @@ class RollOnWillAgainstMalus extends ExtendedRollOnSuccess implements IntegerInt
     /**
      * @return int
      */
-    public function getValue()
+    public function getMalusValue()
     {
         return $this->getResult();
     }

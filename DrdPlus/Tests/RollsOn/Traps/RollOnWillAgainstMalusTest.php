@@ -22,7 +22,7 @@ class RollOnWillAgainstMalusTest extends TestWithMockery
         self::assertSame($rollOnWill, $malusRollOnWillBecauseOfWounds->getRollOnWill());
         self::assertSame($rollOnWill, $malusRollOnWillBecauseOfWounds->getRollOnQuality());
         self::assertSame($expectedMalus, $malusRollOnWillBecauseOfWounds->getResult());
-        self::assertSame($expectedMalus, $malusRollOnWillBecauseOfWounds->getValue());
+        self::assertSame($expectedMalus, $malusRollOnWillBecauseOfWounds->getMalusValue());
     }
 
     public function provideValuePreconditionsRollAndResult()

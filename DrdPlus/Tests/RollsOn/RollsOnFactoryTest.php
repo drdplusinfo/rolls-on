@@ -122,7 +122,7 @@ class RollsOnFactoryTest extends TestWithMockery
         $rollsOnFactory = new RollsOnFactory($this->createRoller2d6DrdPlus($rollValue));
 
         $malusRollOnWill = $rollsOnFactory->makeMalusRollOnWill(Will::getIt($willValue));
-        self::assertSame($expectedMalus, $malusRollOnWill->getValue());
+        self::assertSame($expectedMalus, $malusRollOnWill->getMalusValue());
         self::assertInstanceOf(RollOnWillAgainstMalus::class, $malusRollOnWill);
         self::assertInstanceOf(RollOnQuality::class, $malusRollOnWill->getRollOnWill());
         self::assertSame($malusRollOnWill->getRollOnQuality(), $malusRollOnWill->getRollOnWill());
