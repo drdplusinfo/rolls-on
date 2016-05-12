@@ -9,7 +9,7 @@ use DrdPlus\Properties\Base\Will;
 use DrdPlus\RollsOn\QualityAndSuccess\BasicRollOnSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use DrdPlus\RollsOn\Situations\RollOnFight;
-use DrdPlus\RollsOn\Traps\MalusRollOnWill;
+use DrdPlus\RollsOn\Traps\RollOnWillAgainstMalus;
 use Granam\Tests\Tools\TestWithMockery;
 
 class RollsOnFactoryTest extends TestWithMockery
@@ -123,7 +123,7 @@ class RollsOnFactoryTest extends TestWithMockery
 
         $malusRollOnWill = $rollsOnFactory->makeMalusRollOnWill(Will::getIt($willValue));
         self::assertSame($expectedMalus, $malusRollOnWill->getValue());
-        self::assertInstanceOf(MalusRollOnWill::class, $malusRollOnWill);
+        self::assertInstanceOf(RollOnWillAgainstMalus::class, $malusRollOnWill);
         self::assertInstanceOf(RollOnQuality::class, $malusRollOnWill->getRollOnWill());
         self::assertSame($malusRollOnWill->getRollOnQuality(), $malusRollOnWill->getRollOnWill());
         self::assertInstanceOf(RollOnQuality::class, $rollOnQuality = $malusRollOnWill->getRollOnQuality());

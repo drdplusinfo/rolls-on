@@ -2,11 +2,11 @@
 namespace DrdPlus\Tests\RollsOn\Traps;
 
 use Drd\DiceRoll\Roll;
-use DrdPlus\RollsOn\Traps\MalusRollOnWill;
+use DrdPlus\RollsOn\Traps\RollOnWillAgainstMalus;
 use DrdPlus\RollsOn\Traps\RollOnWill;
 use Granam\Tests\Tools\TestWithMockery;
 
-class MalusRollOnWillTest extends TestWithMockery
+class RollOnWillAgainstMalusTest extends TestWithMockery
 {
     /**
      * @test
@@ -16,7 +16,7 @@ class MalusRollOnWillTest extends TestWithMockery
      */
     public function I_can_use_it($value, $expectedMalus)
     {
-        $malusRollOnWillBecauseOfWounds = new MalusRollOnWill(
+        $malusRollOnWillBecauseOfWounds = new RollOnWillAgainstMalus(
             $rollOnWill = $this->createRollOnWill($value)
         );
         self::assertSame($rollOnWill, $malusRollOnWillBecauseOfWounds->getRollOnWill());

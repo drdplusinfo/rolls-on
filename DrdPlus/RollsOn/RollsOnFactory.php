@@ -7,7 +7,7 @@ use DrdPlus\Properties\Base\Will;
 use DrdPlus\RollsOn\QualityAndSuccess\BasicRollOnSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use DrdPlus\RollsOn\Situations\RollOnFight;
-use DrdPlus\RollsOn\Traps\MalusRollOnWill;
+use DrdPlus\RollsOn\Traps\RollOnWillAgainstMalus;
 use DrdPlus\RollsOn\Traps\RollOnWill;
 use Granam\Strict\Object\StrictObject;
 
@@ -45,11 +45,11 @@ class RollsOnFactory extends StrictObject
 
     /**
      * @param Will $will
-     * @return MalusRollOnWill
+     * @return RollOnWillAgainstMalus
      */
     public function makeMalusRollOnWill(Will $will)
     {
-        return new MalusRollOnWill(new RollOnWill($will, $this->roller2d6DrdPlus->roll()));
+        return new RollOnWillAgainstMalus(new RollOnWill($will, $this->roller2d6DrdPlus->roll()));
     }
 
     /**

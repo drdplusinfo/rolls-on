@@ -10,7 +10,7 @@ use Granam\Integer\IntegerInterface;
  *
  * @method RollOnWill getRollOnQuality
  */
-class MalusRollOnWill extends ExtendedRollOnSuccess implements IntegerInterface
+class RollOnWillAgainstMalus extends ExtendedRollOnSuccess implements IntegerInterface
 {
     const HIGHEST_MALUS = -3;
     const MEDIUM_MALUS = -2;
