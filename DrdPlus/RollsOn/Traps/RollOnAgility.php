@@ -1,0 +1,32 @@
+<?php
+namespace DrdPlus\RollsOn\Traps;
+
+use Drd\DiceRoll\Templates\Rollers\SpecificRolls\Roll2d6DrdPlus;
+use DrdPlus\Properties\Base\Agility;
+use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
+
+class RollOnAgility extends RollOnQuality
+{
+    /**
+     * @var Agility
+     */
+    private $agility;
+
+    /**
+     * @param Agility $agility
+     * @param Roll2d6DrdPlus $roll2d6DrdPlus
+     */
+    public function __construct(Agility $agility, Roll2d6DrdPlus $roll2d6DrdPlus)
+    {
+        $this->agility = $agility;
+        parent::__construct($agility->getValue(), $roll2d6DrdPlus);
+    }
+
+    /**
+     * @return Agility
+     */
+    public function getAgility()
+    {
+        return $this->agility;
+    }
+}
