@@ -20,6 +20,7 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
         SimpleRollOnSuccess $firstSimpleRollOnSuccess,
         SimpleRollOnSuccess $secondSimpleRollOnSuccess = null,
         SimpleRollOnSuccess $thirdSimpleRollOnSuccess = null
+        // any number of SimpleRollOnSuccess ...
     )
     {
         $this->rollsOnSuccess = $this->grabOrderedRollsOnSuccess(func_get_args());
@@ -186,17 +187,17 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
      */
     public function isSuccessful()
     {
-        return $this->getResultRollOnSuccess()->isSuccessful();
+        return $this->getResultSimpleRollOnSuccess()->isSuccessful();
     }
 
     /**
      * @return SimpleRollOnSuccess
      */
-    protected function getResultRollOnSuccess()
+    protected function getResultSimpleRollOnSuccess()
     {
         foreach ($this->rollsOnSuccess as $rollOnSuccess) {
             if ($rollOnSuccess->isSuccessful()) {
-                return $rollOnSuccess;
+                return $rollOnSuccess; // the first successful roll (they are ordered from highest difficulty)
             }
         }
 
@@ -216,7 +217,7 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
      */
     public function getResult()
     {
-        return $this->getResultRollOnSuccess()->getResult();
+        return $this->getResultSimpleRollOnSuccess()->getResult();
     }
 
     /**
@@ -224,6 +225,6 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
      */
     public function __toString()
     {
-        return (string)$this->getResultRollOnSuccess()->getResult();
+        return (string)$this->getResultSimpleRollOnSuccess()->getResult();
     }
 }
