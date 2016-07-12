@@ -15,6 +15,8 @@ class RollOnFight extends RollOnSituation
      * RollOnFight constructor.
      * @param int $fightNumber
      * @param Roll2d6DrdPlus $roll2d6Plus
+     * @throws \Granam\Integer\Tools\Exceptions\WrongParameterType
+     * @throws \Granam\Integer\Tools\Exceptions\ValueLostOnCast
      */
     public function __construct($fightNumber, Roll2d6DrdPlus $roll2d6Plus)
     {
