@@ -3,6 +3,7 @@ namespace DrdPlus\RollsOn\QualityAndSuccess;
 
 use DrdPlus\RollsOn\QualityAndSuccess\Requirements\AnimalDefiance;
 use DrdPlus\RollsOn\QualityAndSuccess\Requirements\Ride;
+use DrdPlus\RollsOn\QualityAndSuccess\Requirements\RidingSkill;
 use DrdPlus\RollsOn\Traps\RollOnAgility;
 
 /**
@@ -19,10 +20,11 @@ class RollOnAnimalControl extends ExtendedRollOnSuccess
      * @param RollOnAgility $rollOnAgility
      * @param AnimalDefiance $animalDefiance
      * @param Ride $ride
+     * @param RidingSkill $ridingSkill
      */
-    public function __construct(RollOnAgility $rollOnAgility, AnimalDefiance $animalDefiance, Ride $ride)
+    public function __construct(RollOnAgility $rollOnAgility, AnimalDefiance $animalDefiance, Ride $ride, RidingSkill $ridingSkill)
     {
-        $toSuccessTrap = $animalDefiance->getValue() + $ride->getValue();
+        $toSuccessTrap = $animalDefiance->getValue() + $ride->getValue() - $ridingSkill->getValue();
         $toModerateFailureTrap = $toSuccessTrap - 4;
         /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
         parent::__construct(
