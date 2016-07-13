@@ -69,7 +69,7 @@ class SimpleRollOnSuccess extends StrictObject implements RollOnSuccess
     /**
      * @return bool
      */
-    public function isSuccessful()
+    public function isSuccess()
     {
         return $this->getDifficulty() <= $this->getRollOnQuality()->getValue();
     }
@@ -79,7 +79,7 @@ class SimpleRollOnSuccess extends StrictObject implements RollOnSuccess
      */
     public function getResult()
     {
-        return $this->isSuccessful()
+        return $this->isSuccess()
             ? $this->successValue
             : $this->failureValue;
     }
@@ -87,9 +87,9 @@ class SimpleRollOnSuccess extends StrictObject implements RollOnSuccess
     /**
      * @return bool
      */
-    public function isFailed()
+    public function isFailure()
     {
-        return !$this->isSuccessful();
+        return !$this->isSuccess();
     }
 
     /**

@@ -1,0 +1,75 @@
+<?php
+namespace DrdPlus\RollsOn\QualityAndSuccess;
+
+use DrdPlus\RollsOn\QualityAndSuccess\Requirements\AnimalDefiance;
+use DrdPlus\RollsOn\QualityAndSuccess\Requirements\Ride;
+use DrdPlus\RollsOn\Traps\RollOnAgility;
+
+/**
+ * @method RollOnAgility getRollOnQuality
+ * @method string getResult
+ */
+class RollOnAnimalControl extends ExtendedRollOnSuccess
+{
+    const FATAL_FAILURE = 'fatal_failure';
+    const MODERATE_FAILURE = 'moderate_failure';
+    const SUCCESS = SimpleRollOnSuccess::DEFAULT_SUCCESS_RESULT_CODE;
+
+    /**
+     * @param RollOnAgility $rollOnAgility
+     * @param AnimalDefiance $animalDefiance
+     * @param Ride $ride
+     */
+    public function __construct(RollOnAgility $rollOnAgility, AnimalDefiance $animalDefiance, Ride $ride)
+    {
+        $toSuccessTrap = $animalDefiance->getValue() + $ride->getValue();
+        $toModerateFailureTrap = $toSuccessTrap - 4;
+        /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
+        parent::__construct(
+            new SimpleRollOnSuccess($toModerateFailureTrap, $rollOnAgility, self::MODERATE_FAILURE, self::FATAL_FAILURE),
+            new SimpleRollOnSuccess($toSuccessTrap, $rollOnAgility)
+        );
+    }
+
+    /**
+     * @return RollOnAgility
+     */
+    public function getRollOnAgility()
+    {
+        return $this->getRollOnQuality();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isModerateFailure()
+    {
+        return $this->getResult() === self::MODERATE_FAILURE;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFatalFailure()
+    {
+        return $this->getResult() === self::FATAL_FAILURE;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFailure()
+    {
+        // even moderate failure is failure on riding an animal
+        return $this->isFatalFailure() || $this->isModerateFailure();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSuccess()
+    {
+        return !$this->isFailure();
+    }
+
+}

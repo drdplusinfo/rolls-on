@@ -25,13 +25,13 @@ class BasicRollOnSuccessTest extends TestWithMockery
 
         if ($shouldSuccess) {
             self::assertTrue($basicRollOnSuccess->getValue());
-            self::assertTrue($basicRollOnSuccess->isSuccessful());
-            self::assertFalse($basicRollOnSuccess->isFailed());
+            self::assertTrue($basicRollOnSuccess->isSuccess());
+            self::assertFalse($basicRollOnSuccess->isFailure());
             self::assertSame('success', (string)$basicRollOnSuccess);
         } else {
             self::assertFalse($basicRollOnSuccess->getValue());
-            self::assertFalse($basicRollOnSuccess->isSuccessful());
-            self::assertTrue($basicRollOnSuccess->isFailed());
+            self::assertFalse($basicRollOnSuccess->isSuccess());
+            self::assertTrue($basicRollOnSuccess->isFailure());
             self::assertSame('failure', (string)$basicRollOnSuccess);
         }
     }

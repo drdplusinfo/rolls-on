@@ -12,7 +12,7 @@ interface RollOnSuccess
     /**
      * @return bool
      */
-    public function isSuccessful();
+    public function isSuccess();
 
     /**
      * @return string
@@ -22,7 +22,7 @@ interface RollOnSuccess
     /**
      * @return bool
      */
-    public function isFailed();
+    public function isFailure();
 
     /**
      * @return string

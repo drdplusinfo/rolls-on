@@ -13,8 +13,9 @@ class RollOnWillAgainstMalusTest extends TestWithMockery
      * @dataProvider provideValuePreconditionsRollAndResult
      * @param $value
      * @param $expectedMalus
+     * @param $isSuccess
      */
-    public function I_can_use_it($value, $expectedMalus)
+    public function I_can_use_it($value, $expectedMalus, $isSuccess)
     {
         $malusRollOnWillBecauseOfWounds = new RollOnWillAgainstMalus(
             $rollOnWill = $this->createRollOnWill($value)
@@ -23,17 +24,18 @@ class RollOnWillAgainstMalusTest extends TestWithMockery
         self::assertSame($rollOnWill, $malusRollOnWillBecauseOfWounds->getRollOnQuality());
         self::assertSame($expectedMalus, $malusRollOnWillBecauseOfWounds->getResult());
         self::assertSame($expectedMalus, $malusRollOnWillBecauseOfWounds->getMalusValue());
+        self::assertSame($isSuccess, $malusRollOnWillBecauseOfWounds->isSuccess());
     }
 
     public function provideValuePreconditionsRollAndResult()
     {
         return [
-            [4, -3],
-            [5, -2],
-            [9, -2],
-            [10, -1],
-            [14, -1],
-            [15, 0],
+            [4, -3, false],
+            [5, -2, true], // only fatal failure is failure
+            [9, -2, true], // only fatal failure is failure
+            [10, -1, true], // only fatal failure is failure
+            [14, -1, true], // only fatal failure is failure
+            [15, 0, true],
         ];
     }
 

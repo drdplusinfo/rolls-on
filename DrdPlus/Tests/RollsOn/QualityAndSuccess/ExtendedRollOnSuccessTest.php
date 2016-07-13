@@ -28,11 +28,11 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
         self::assertSame($expectedResultCode, $extendedRollOnSuccess->getResult());
         self::assertSame($expectedResultCode, (string)$extendedRollOnSuccess);
         if ($expectingSuccess) {
-            self::assertFalse($extendedRollOnSuccess->isFailed());
-            self::assertTrue($extendedRollOnSuccess->isSuccessful());
+            self::assertFalse($extendedRollOnSuccess->isFailure());
+            self::assertTrue($extendedRollOnSuccess->isSuccess());
         } else {
-            self::assertTrue($extendedRollOnSuccess->isFailed());
-            self::assertFalse($extendedRollOnSuccess->isSuccessful());
+            self::assertTrue($extendedRollOnSuccess->isFailure());
+            self::assertFalse($extendedRollOnSuccess->isSuccess());
         }
     }
 
@@ -84,22 +84,22 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
     /**
      * @param $difficulty
      * @param RollOnQuality $rollOnQuality
-     * @param $isSuccessful
+     * @param $isSuccess
      * @param $resultValue
      * @return \Mockery\MockInterface|SimpleRollOnSuccess
      */
-    private function createSimpleRollOnSuccess($difficulty, RollOnQuality $rollOnQuality, $isSuccessful = false, $resultValue = 'foo')
+    private function createSimpleRollOnSuccess($difficulty, RollOnQuality $rollOnQuality, $isSuccess = false, $resultValue = 'foo')
     {
-        return $this->createRollOnSuccess(SimpleRollOnSuccess::class, $difficulty, $rollOnQuality, $isSuccessful, $resultValue);
+        return $this->createRollOnSuccess(SimpleRollOnSuccess::class, $difficulty, $rollOnQuality, $isSuccess, $resultValue);
     }
 
-    private function createRollOnSuccess($class, $difficulty, RollOnQuality $rollOnQuality, $isSuccessful, $resultValue)
+    private function createRollOnSuccess($class, $difficulty, RollOnQuality $rollOnQuality, $isSuccess, $resultValue)
     {
         $rollOnSuccess = $this->mockery($class);
         $rollOnSuccess->shouldReceive('getDifficulty')
             ->andReturn($difficulty);
-        $rollOnSuccess->shouldReceive('isSuccessful')
-            ->andReturn($isSuccessful);
+        $rollOnSuccess->shouldReceive('isSuccess')
+            ->andReturn($isSuccess);
         $rollOnSuccess->shouldReceive('getResult')
             ->andReturn($resultValue);
         $rollOnSuccess->shouldReceive('getRollOnQuality')
@@ -134,13 +134,13 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
     /**
      * @param $difficulty
      * @param RollOnQuality $rollOnQuality
-     * @param bool $isSuccessful
+     * @param bool $isSuccess
      * @param string $resultValue
      * @return \Mockery\MockInterface|BasicRollOnSuccess
      */
-    private function createBasicRollOnSuccess($difficulty, RollOnQuality $rollOnQuality, $isSuccessful = false, $resultValue = 'foo')
+    private function createBasicRollOnSuccess($difficulty, RollOnQuality $rollOnQuality, $isSuccess = false, $resultValue = 'foo')
     {
-        return $this->createRollOnSuccess(BasicRollOnSuccess::class, $difficulty, $rollOnQuality, $isSuccessful, $resultValue);
+        return $this->createRollOnSuccess(BasicRollOnSuccess::class, $difficulty, $rollOnQuality, $isSuccess, $resultValue);
     }
 
     /**
@@ -198,7 +198,7 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
             $this->createSimpleRollOnSuccess(1, $rollOnQuality, true, 'success'),
             $this->createBasicRollOnSuccess(2, $rollOnQuality, false /* failure for this roll */, 'success' /* code used only on success */)
         );
-        self::assertTrue($extendedRollOnSuccess->isSuccessful());
+        self::assertTrue($extendedRollOnSuccess->isSuccess());
     }
 
     /**
