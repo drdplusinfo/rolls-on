@@ -2,6 +2,7 @@
 namespace DrdPlus\RollsOn\QualityAndSuccess;
 
 use DrdPlus\RollsOn\QualityAndSuccess\Requirements\AnimalDefiance;
+use DrdPlus\RollsOn\QualityAndSuccess\Requirements\PreviousFailuresCount;
 use DrdPlus\RollsOn\QualityAndSuccess\Requirements\Ride;
 use DrdPlus\RollsOn\QualityAndSuccess\Requirements\RidingSkill;
 use DrdPlus\RollsOn\Traps\RollOnAgility;
@@ -21,15 +22,22 @@ class RollOnAnimalControl extends ExtendedRollOnSuccess
      * @param AnimalDefiance $animalDefiance
      * @param Ride $ride
      * @param RidingSkill $ridingSkill
+     * @param PreviousFailuresCount $previousFailuresCount
      */
-    public function __construct(RollOnAgility $rollOnAgility, AnimalDefiance $animalDefiance, Ride $ride, RidingSkill $ridingSkill)
+    public function __construct(
+        RollOnAgility $rollOnAgility,
+        AnimalDefiance $animalDefiance,
+        Ride $ride,
+        RidingSkill $ridingSkill,
+        PreviousFailuresCount $previousFailuresCount
+    )
     {
-        $toSuccessTrap = $animalDefiance->getValue() + $ride->getValue() - $ridingSkill->getValue();
+        $toSuccessTrap = $animalDefiance->getValue() + $ride->getValue() - $ridingSkill->getValue() + $previousFailuresCount->getValue();
         $toModerateFailureTrap = $toSuccessTrap - 4;
         /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
         parent::__construct(
             new SimpleRollOnSuccess($toModerateFailureTrap, $rollOnAgility, self::MODERATE_FAILURE, self::FATAL_FAILURE),
-            new SimpleRollOnSuccess($toSuccessTrap, $rollOnAgility)
+            new SimpleRollOnSuccess($toSuccessTrap, $rollOnAgility, self::SUCCESS, self::MODERATE_FAILURE)
         );
     }
 

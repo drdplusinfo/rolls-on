@@ -3,6 +3,7 @@ namespace DrdPlus\Tests\RollsOn\QualityAndSuccess;
 
 use Drd\DiceRoll\Roll;
 use DrdPlus\RollsOn\QualityAndSuccess\Requirements\AnimalDefiance;
+use DrdPlus\RollsOn\QualityAndSuccess\Requirements\PreviousFailuresCount;
 use DrdPlus\RollsOn\QualityAndSuccess\Requirements\Ride;
 use DrdPlus\RollsOn\QualityAndSuccess\Requirements\RidingSkill;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnAnimalControl;
@@ -20,7 +21,8 @@ class RollOnAnimalControlTest extends TestWithMockery
             $rollOnAgility = $this->createRollOnAgility(321),
             $this->createAnimalDefiance(123),
             $this->createRide(456),
-            $this->createRidingSkill(789)
+            $this->createRidingSkill(789),
+            $this->createPreviousFailuresCount(987)
         );
 
         self::assertSame($rollOnAgility, $rollOnAnimalControl->getRollOnAgility());
@@ -88,6 +90,19 @@ class RollOnAnimalControlTest extends TestWithMockery
     }
 
     /**
+     * @param $value
+     * @return \Mockery\MockInterface|PreviousFailuresCount
+     */
+    private function createPreviousFailuresCount($value)
+    {
+        $previousFailuresCount = $this->mockery(PreviousFailuresCount::class);
+        $previousFailuresCount->shouldReceive('getValue')
+            ->andReturn($value);
+
+        return $previousFailuresCount;
+    }
+
+    /**
      * @test
      * @dataProvider provideValuesToModerateFail
      * @param $roll
@@ -96,14 +111,24 @@ class RollOnAnimalControlTest extends TestWithMockery
      * @param $ridingSkill
      * @param $isModerateFailure
      * @param $isSuccess
+     * @param $previousFailuresCount
      */
-    public function I_can_find_out_if_failed_just_moderately($roll, $defiance, $ride, $ridingSkill, $isModerateFailure, $isSuccess)
+    public function I_can_find_out_if_failed_just_moderately(
+        $roll,
+        $defiance,
+        $ride,
+        $ridingSkill,
+        $previousFailuresCount,
+        $isModerateFailure,
+        $isSuccess
+    )
     {
         $rollOnAnimalControl = new RollOnAnimalControl(
             $this->createRollOnAgility($roll),
             $this->createAnimalDefiance($defiance),
             $this->createRide($ride),
-            $this->createRidingSkill($ridingSkill)
+            $this->createRidingSkill($ridingSkill),
+            $this->createPreviousFailuresCount($previousFailuresCount)
         );
 
         self::assertSame($isModerateFailure, $rollOnAnimalControl->isModerateFailure());
@@ -114,12 +139,16 @@ class RollOnAnimalControlTest extends TestWithMockery
     public function provideValuesToModerateFail()
     {
         return [
-            [10, 5, 5, 0, false, true],
-            [10, 5, 6, 1, false, true],
-            [10, 5, 6, 0, true, false], // in case of riding on animal even partial failure is failure
-            [3, 3, 5, 0, false, false],
-            [3, 3, 5, 2, true, false],
-            [3, 3, 5, 50, false, true],
+            [10, 5, 5, 0, 0, false, true],
+            [10, 5, 5, 0, 1, true, false],
+            [10, 5, 6, 1, 0, false, true],
+            [10, 5, 6, 1, 2, true, false],
+            [10, 5, 6, 0, 0, true, false], // in case of riding on animal even partial failure is failure
+            [3, 3, 5, 0, 0, false, false],
+            [3, 3, 5, 0, 5, false, false],
+            [3, 3, 5, 2, 0, true, false],
+            [3, 3, 5, 50, 2, false, true],
+            [3, 3, 5, 50, 200, false, false],
         ];
     }
 
@@ -130,27 +159,31 @@ class RollOnAnimalControlTest extends TestWithMockery
      * @param $defiance
      * @param $ride
      * @param $ridingSkill
+     * @param $previousFailuresCount
      * @param $isFatalFailure
      */
-    public function I_can_find_out_if_failed_fataly($roll, $defiance, $ride, $ridingSkill, $isFatalFailure)
+    public function I_can_find_out_if_failed_fataly($roll, $defiance, $ride, $ridingSkill, $previousFailuresCount, $isFatalFailure)
     {
         $rollOnAnimalControl = new RollOnAnimalControl(
             $this->createRollOnAgility($roll),
             $this->createAnimalDefiance($defiance),
             $this->createRide($ride),
-            $this->createRidingSkill($ridingSkill)
+            $this->createRidingSkill($ridingSkill),
+            $this->createPreviousFailuresCount($previousFailuresCount)
         );
 
-        self::assertSame($isFatalFailure, $rollOnAnimalControl->isModerateFailure());
+        self::assertSame($isFatalFailure, $rollOnAnimalControl->isFatalFailure());
     }
 
     public function provideValuesToFatalFail()
     {
         return [
-            [10, 5, 5, 0, false],
-            [10, 5, 6, 0, true],
-            [10, 5, 6, 1, false],
-            [10, 15, 6, 999, false],
+            [10, 5, 5, 0, 4, false],
+            [10, 5, 5, 0, 5, true],
+            [10, 9, 6, 0, 0, true],
+            [10, 9, 6, 1, 0, false],
+            [10, 5, 6, 1, 5, true],
+            [10, 15, 6, 999, 3, false],
         ];
     }
 }
