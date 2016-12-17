@@ -1,6 +1,7 @@
 <?php
 namespace DrdPlus\Tests\RollsOn\Traps;
 
-class RollOnIntelligenceTest extends AbstractRollOnPropertyTest
+class RollOnIntelligenceTest extends RollOnQualityTest
 {
+
 }
