@@ -10,6 +10,7 @@
   },
   "require": {
     "php": ">=5.5.0",
+    "roave/security-advisories": "dev-master",
     "granam/strict-object": "dev-master",
     "granam/integer": "dev-master",
     "granam/boolean": "dev-master",
