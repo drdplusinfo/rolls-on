@@ -2,6 +2,7 @@
 namespace DrdPlus\RollsOn\Situations;
 
 use Drd\DiceRoll\Templates\Rollers\SpecificRolls\Roll2d6DrdPlus;
+use Granam\Integer\IntegerInterface;
 use Granam\Integer\Tools\ToInteger;
 
 class RollOnFight extends RollOnSituation
@@ -13,7 +14,8 @@ class RollOnFight extends RollOnSituation
 
     /**
      * RollOnFight constructor.
-     * @param int $fightNumber
+     *
+     * @param int|IntegerInterface $fightNumber
      * @param Roll2d6DrdPlus $roll2d6Plus
      * @throws \Granam\Integer\Tools\Exceptions\WrongParameterType
      * @throws \Granam\Integer\Tools\Exceptions\ValueLostOnCast

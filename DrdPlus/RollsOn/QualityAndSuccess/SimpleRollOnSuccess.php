@@ -2,7 +2,9 @@
 namespace DrdPlus\RollsOn\QualityAndSuccess;
 
 use Drd\DiceRoll\Roll;
+use Granam\Integer\IntegerInterface;
 use Granam\Integer\Tools\ToInteger;
+use Granam\Scalar\ScalarInterface;
 use Granam\Scalar\Tools\ToScalar;
 use Granam\Strict\Object\StrictObject;
 
@@ -29,10 +31,10 @@ class SimpleRollOnSuccess extends StrictObject implements RollOnSuccess
     const DEFAULT_FAILURE_RESULT_CODE = 'failure';
 
     /**
-     * @param int $difficulty
+     * @param int|IntegerInterface $difficulty
      * @param RollOnQuality $rollOnQuality
-     * @param string|int|float|bool $successValue
-     * @param string|int|float|bool $failureValue
+     * @param string|int|float|bool|ScalarInterface $successValue
+     * @param string|int|float|bool|ScalarInterface $failureValue
      * @throws \Granam\Integer\Tools\Exceptions\WrongParameterType
      * @throws \Granam\Integer\Tools\Exceptions\ValueLostOnCast
      * @throws \Granam\Scalar\Tools\Exceptions\WrongParameterType

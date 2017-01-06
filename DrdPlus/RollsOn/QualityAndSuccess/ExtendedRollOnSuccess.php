@@ -16,6 +16,15 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
      */
     private $rollOnQuality;
 
+    /**
+     * @param SimpleRollOnSuccess $firstSimpleRollOnSuccess
+     * @param SimpleRollOnSuccess|null $secondSimpleRollOnSuccess
+     * @param SimpleRollOnSuccess|null $thirdSimpleRollOnSuccess
+     * @throws \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\ExpectedSimpleRollsOnSuccessOnly
+     * @throws \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\EveryDifficultyShouldBeUnique
+     * @throws \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\EverySuccessCodeShouldBeUnique
+     * @throws \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\RollOnQualityHasToBeTheSame
+     */
     public function __construct(
         SimpleRollOnSuccess $firstSimpleRollOnSuccess,
         SimpleRollOnSuccess $secondSimpleRollOnSuccess = null,
@@ -46,6 +55,10 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
         return $this->sortByDifficultyDescending($simpleRollsOnSuccess);
     }
 
+    /**
+     * @param array $values
+     * @return array
+     */
     private function removeNulls(array $values)
     {
         return array_filter(
@@ -137,6 +150,10 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
         }
     }
 
+    /**
+     * @param RollOnQuality $rollOnQuality
+     * @return string
+     */
     private function describeRollOnQuality(RollOnQuality $rollOnQuality)
     {
         return "sum of preconditions: {$rollOnQuality->getPreconditionsSum()}, value: {$rollOnQuality->getValue()}"

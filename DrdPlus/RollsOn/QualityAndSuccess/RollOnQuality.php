@@ -17,8 +17,13 @@ class RollOnQuality extends StrictObject implements IntegerInterface
      */
     private $roll;
 
+    /**
+     * @param int|IntegerInterface $preconditionsSum
+     * @param Roll $roll
+     */
     public function __construct($preconditionsSum, Roll $roll)
     {
+        /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
         $this->preconditionsSum = ToInteger::toInteger($preconditionsSum);
         $this->roll = $roll;
     }

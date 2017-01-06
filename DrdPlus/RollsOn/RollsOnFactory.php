@@ -9,6 +9,7 @@ use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use DrdPlus\RollsOn\Situations\RollOnFight;
 use DrdPlus\RollsOn\Traps\RollOnWillAgainstMalus;
 use DrdPlus\RollsOn\Traps\RollOnWill;
+use Granam\Integer\IntegerInterface;
 use Granam\Strict\Object\StrictObject;
 
 class RollsOnFactory extends StrictObject
@@ -25,11 +26,12 @@ class RollsOnFactory extends StrictObject
 
     /**
      * See DrD+ PPH page 101 left column
-     * @param int $fightNumber
+     * @param int|IntegerInterface $fightNumber
      * @return RollOnFight
      */
     public function makeRollOnFight($fightNumber)
     {
+        /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
         return new RollOnFight($fightNumber, $this->roller2d6DrdPlus->roll());
     }
 
@@ -53,13 +55,14 @@ class RollsOnFactory extends StrictObject
     }
 
     /**
-     * @param int $difficulty
-     * @param int $preconditionsSum
+     * @param int|IntegerInterface $difficulty
+     * @param int|IntegerInterface $preconditionsSum
      * @param Roller $roller
      * @return BasicRollOnSuccess
      */
     public function makeBasicRollOnSuccess($difficulty, $preconditionsSum, Roller $roller)
     {
+        /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
         return new BasicRollOnSuccess($difficulty, $this->makeRollOnQuality($preconditionsSum, $roller));
     }
 
