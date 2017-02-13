@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Tests\RollsOn\QualityAndSuccess;
 
-use Drd\DiceRoll\Roll;
+use Drd\DiceRolls\Roll;
 use DrdPlus\RollsOn\QualityAndSuccess\Requirements\AnimalDefiance;
 use DrdPlus\RollsOn\QualityAndSuccess\Requirements\PreviousFailuresCount;
 use DrdPlus\RollsOn\QualityAndSuccess\Requirements\Ride;

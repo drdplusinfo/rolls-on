@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\RollsOn\QualityAndSuccess;
 
-use Drd\DiceRoll\Roll;
+use Drd\DiceRolls\Roll;
 use Granam\Integer\IntegerInterface;
 use Granam\Integer\Tools\ToInteger;
 use Granam\Scalar\ScalarInterface;

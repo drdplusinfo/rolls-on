@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Tests\RollsOn\Traps;
 
-use Drd\DiceRoll\Templates\Rollers\Roller2d6DrdPlus;
+use Drd\DiceRolls\Templates\Rollers\Roller2d6DrdPlus;
 use DrdPlus\Properties\Base\BaseProperty;
 use DrdPlus\Properties\Derived\DerivedProperty;
 use DrdPlus\Properties\Property;

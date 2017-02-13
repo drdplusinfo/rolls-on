@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Tests\RollsOn\Traps;
 
-use Drd\DiceRoll\Roll;
+use Drd\DiceRolls\Roll;
 use DrdPlus\RollsOn\Traps\RollOnWillAgainstMalus;
 use DrdPlus\RollsOn\Traps\RollOnWill;
 use Granam\Tests\Tools\TestWithMockery;

@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\RollsOn\Traps;
 
-use Drd\DiceRoll\Templates\Rolls\Roll1d6;
+use Drd\DiceRolls\Templates\Rolls\Roll1d6;
 use DrdPlus\Properties\Base\Will;
 use DrdPlus\Properties\Property;
 

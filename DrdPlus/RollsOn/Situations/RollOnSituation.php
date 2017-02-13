@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\RollsOn\Situations;
 
-use Drd\DiceRoll\Templates\Rolls\Roll2d6DrdPlus;
+use Drd\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
 use Granam\Integer\IntegerInterface;
 use Granam\Strict\Object\StrictObject;
 

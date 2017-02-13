@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\RollsOn\Traps;
 
-use Drd\DiceRoll\Templates\Rolls\Roll2d6DrdPlus;
+use Drd\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
 use DrdPlus\Properties\Base\Charisma;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 
