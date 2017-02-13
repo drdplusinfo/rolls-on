@@ -2,6 +2,7 @@
 namespace DrdPlus\Tests\RollsOn\Traps;
 
 use Drd\DiceRolls\Templates\Rollers\Roller2d6DrdPlus;
+use Drd\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
 use DrdPlus\Properties\Base\BaseProperty;
 use DrdPlus\Properties\Derived\DerivedProperty;
 use DrdPlus\Properties\Property;
@@ -15,9 +16,8 @@ abstract class RollOnQualityTest extends TestWithMockery
      */
     public function I_can_use_it()
     {
-        $sutClass = self::getSutClass();
         /** @var RollOnQuality $rollOnProperty */
-        $rollOnProperty = new $sutClass(
+        $rollOnProperty = $this->createSutInstance(
             $property = $this->getPropertyInstance($propertyValue = 123),
             $roll = Roller2d6DrdPlus::getIt()->roll()
         );
@@ -28,6 +28,18 @@ abstract class RollOnQualityTest extends TestWithMockery
         $resultValue = $propertyValue + $roll->getValue();
         self::assertSame($resultValue, $rollOnProperty->getValue());
         self::assertSame((string)$resultValue, (string)$rollOnProperty);
+    }
+
+    /**
+     * @param Property $property
+     * @param Roll2d6DrdPlus $roll2D6DrdPlus
+     * @return RollOnQuality
+     */
+    protected function createSutInstance(Property $property, Roll2d6DrdPlus $roll2D6DrdPlus)
+    {
+        $sutClass = self::getSutClass();
+
+        return new $sutClass($property, $roll2D6DrdPlus);
     }
 
     /**
