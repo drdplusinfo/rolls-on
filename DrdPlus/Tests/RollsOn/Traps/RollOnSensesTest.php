@@ -51,6 +51,7 @@ class RollOnSensesTest extends RollOnQualityTest
         self::assertSame($senses, $rollOnSenses->getSenses());
         self::assertSame($roll2D6DrdPlus, $rollOnSenses->getRoll());
         self::assertSame($bonusFromUsedRemarkableSense, $rollOnSenses->getBonusFromUsedRemarkableSense());
+        self::assertSame(123 + 456, $rollOnSenses->getValueWithoutBonusFromUsedRemarkableSense());
     }
 
     /**
