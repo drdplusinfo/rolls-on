@@ -14,7 +14,7 @@
     "granam/strict-object": "dev-master",
     "granam/integer": "dev-master",
     "granam/boolean": "dev-master",
-    "drd/dice-rolls": "dev-master",
+    "drd-plus/dice-rolls": "dev-master",
     "drd-plus/properties": "dev-master"
   },
   "require-dev": {
