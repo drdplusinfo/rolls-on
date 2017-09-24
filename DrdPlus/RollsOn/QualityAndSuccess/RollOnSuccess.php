@@ -12,17 +12,17 @@ interface RollOnSuccess
     /**
      * @return bool
      */
-    public function isSuccess();
+    public function isSuccess(): bool;
 
     /**
-     * @return string
+     * @return string|int|float|bool
      */
     public function getResult();
 
     /**
      * @return bool
      */
-    public function isFailure();
+    public function isFailure(): bool;
 
     /**
      * @return string

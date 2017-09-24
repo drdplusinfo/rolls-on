@@ -35,7 +35,7 @@ class RollOnSenses extends RollOnQuality
     /**
      * @return int
      */
-    public function getValueWithoutBonusFromUsedRemarkableSense()
+    public function getValueWithoutBonusFromUsedRemarkableSense(): int
     {
         return $this->getValue() - $this->getBonusFromUsedRemarkableSense()->getValue();
     }
@@ -43,7 +43,7 @@ class RollOnSenses extends RollOnQuality
     /**
      * @return Senses
      */
-    public function getSenses()
+    public function getSenses(): Senses
     {
         return $this->senses;
     }
@@ -51,7 +51,7 @@ class RollOnSenses extends RollOnQuality
     /**
      * @return BonusFromUsedRemarkableSense
      */
-    public function getBonusFromUsedRemarkableSense()
+    public function getBonusFromUsedRemarkableSense(): BonusFromUsedRemarkableSense
     {
         return $this->bonusFromUsedRemarkableSense;
     }

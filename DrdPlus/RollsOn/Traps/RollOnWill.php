@@ -25,7 +25,7 @@ class RollOnWill extends RollOnQuality
     /**
      * @return Will
      */
-    public function getWill()
+    public function getWill(): Will
     {
         return $this->will;
     }

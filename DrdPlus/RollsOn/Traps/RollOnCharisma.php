@@ -25,7 +25,7 @@ class RollOnCharisma extends RollOnQuality
     /**
      * @return Charisma
      */
-    public function getCharisma()
+    public function getCharisma(): Charisma
     {
         return $this->charisma;
     }

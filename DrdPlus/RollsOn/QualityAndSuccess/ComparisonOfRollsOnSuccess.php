@@ -10,7 +10,7 @@ class ComparisonOfRollsOnSuccess extends StrictObject
      * @param RollOnSuccess $thatOne
      * @return bool
      */
-    public static function isLesser(RollOnSuccess $lesserThan, RollOnSuccess $thatOne)
+    public static function isLesser(RollOnSuccess $lesserThan, RollOnSuccess $thatOne): bool
     {
         return ComparisonOfRollsOnQuality::isLesser($lesserThan->getRollOnQuality(), $thatOne->getRollOnQuality());
     }
@@ -20,7 +20,7 @@ class ComparisonOfRollsOnSuccess extends StrictObject
      * @param RollOnSuccess $thatOne
      * @return bool
      */
-    public static function isGreater(RollOnSuccess $greaterThan, RollOnSuccess $thatOne)
+    public static function isGreater(RollOnSuccess $greaterThan, RollOnSuccess $thatOne): bool
     {
         return ComparisonOfRollsOnQuality::isGreater($greaterThan->getRollOnQuality(), $thatOne->getRollOnQuality());
     }
@@ -30,7 +30,7 @@ class ComparisonOfRollsOnSuccess extends StrictObject
      * @param RollOnSuccess $thatOne
      * @return bool
      */
-    public static function isEqual(RollOnSuccess $equalTo, RollOnSuccess $thatOne)
+    public static function isEqual(RollOnSuccess $equalTo, RollOnSuccess $thatOne): bool
     {
         return ComparisonOfRollsOnQuality::isEqual($equalTo->getRollOnQuality(), $thatOne->getRollOnQuality());
     }
@@ -40,7 +40,7 @@ class ComparisonOfRollsOnSuccess extends StrictObject
      * @param RollOnSuccess $withThat
      * @return int
      */
-    public static function compare(RollOnSuccess $compareThat, RollOnSuccess $withThat)
+    public static function compare(RollOnSuccess $compareThat, RollOnSuccess $withThat): int
     {
         return ComparisonOfRollsOnQuality::compare($compareThat->getRollOnQuality(), $withThat->getRollOnQuality());
     }

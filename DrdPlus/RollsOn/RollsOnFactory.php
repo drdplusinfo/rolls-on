@@ -29,19 +29,20 @@ class RollsOnFactory extends StrictObject
      * @param int|IntegerInterface $fightNumber
      * @return RollOnFight
      */
-    public function makeRollOnFight($fightNumber)
+    public function makeRollOnFight($fightNumber): RollOnFight
     {
         /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
         return new RollOnFight($fightNumber, $this->roller2d6DrdPlus->roll());
     }
 
     /**
-     * @param int $preconditionsSum
+     * @param int|IntegerInterface $preconditionsSum
      * @param Roller $roller
      * @return RollOnQuality
      */
-    public function makeRollOnQuality($preconditionsSum, Roller $roller)
+    public function makeRollOnQuality($preconditionsSum, Roller $roller): RollOnQuality
     {
+        /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
         return new RollOnQuality($preconditionsSum, $roller->roll());
     }
 
@@ -49,7 +50,7 @@ class RollsOnFactory extends StrictObject
      * @param Will $will
      * @return RollOnWillAgainstMalus
      */
-    public function makeMalusRollOnWill(Will $will)
+    public function makeMalusRollOnWill(Will $will): RollOnWillAgainstMalus
     {
         return new RollOnWillAgainstMalus(new RollOnWill($will, $this->roller2d6DrdPlus->roll()));
     }
@@ -60,7 +61,7 @@ class RollsOnFactory extends StrictObject
      * @param Roller $roller
      * @return BasicRollOnSuccess
      */
-    public function makeBasicRollOnSuccess($difficulty, $preconditionsSum, Roller $roller)
+    public function makeBasicRollOnSuccess($difficulty, $preconditionsSum, Roller $roller): BasicRollOnSuccess
     {
         /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
         return new BasicRollOnSuccess($difficulty, $this->makeRollOnQuality($preconditionsSum, $roller));

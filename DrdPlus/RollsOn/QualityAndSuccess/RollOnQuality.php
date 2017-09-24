@@ -31,7 +31,7 @@ class RollOnQuality extends StrictObject implements IntegerInterface
     /**
      * @return int
      */
-    public function getPreconditionsSum()
+    public function getPreconditionsSum(): int
     {
         return $this->preconditionsSum;
     }
@@ -39,7 +39,7 @@ class RollOnQuality extends StrictObject implements IntegerInterface
     /**
      * @return Roll
      */
-    public function getRoll()
+    public function getRoll(): Roll
     {
         return $this->roll;
     }
@@ -47,7 +47,7 @@ class RollOnQuality extends StrictObject implements IntegerInterface
     /**
      * @return int
      */
-    public function getValue()
+    public function getValue(): int
     {
         return $this->getPreconditionsSum() + $this->getRoll()->getValue();
     }

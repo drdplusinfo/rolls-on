@@ -25,7 +25,7 @@ class RollOnStrength extends RollOnQuality
     /**
      * @return Strength
      */
-    public function getStrength()
+    public function getStrength(): Strength
     {
         return $this->strength;
     }

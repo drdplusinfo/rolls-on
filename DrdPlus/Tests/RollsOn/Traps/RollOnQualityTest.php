@@ -45,7 +45,7 @@ abstract class RollOnQualityTest extends TestWithMockery
     /**
      * @return string|BaseProperty
      */
-    protected function getPropertyClass()
+    protected function getPropertyClass(): string
     {
         $propertyBasename = preg_replace('~^.+RollOn(.+)$~', '$1', self::getSutClass());
         $basePropertyNamespace = (new \ReflectionClass(BaseProperty::class))->getNamespaceName();
@@ -62,7 +62,7 @@ abstract class RollOnQualityTest extends TestWithMockery
      * @param $value
      * @return \Mockery\MockInterface|Property
      */
-    protected function getPropertyInstance($value)
+    protected function getPropertyInstance($value): Property
     {
         $property = $this->mockery($this->getPropertyClass());
         $property->shouldReceive('getValue')
@@ -71,7 +71,7 @@ abstract class RollOnQualityTest extends TestWithMockery
         return $property;
     }
 
-    protected function getPropertyGetter()
+    protected function getPropertyGetter(): string
     {
         $propertyName = preg_replace('~^(?:.+[\\\])?(\w+)$~', '$1', $this->getPropertyClass());
 

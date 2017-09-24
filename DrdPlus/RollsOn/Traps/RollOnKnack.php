@@ -25,7 +25,7 @@ class RollOnKnack extends RollOnQuality
     /**
      * @return Knack
      */
-    public function getKnack()
+    public function getKnack(): Knack
     {
         return $this->knack;
     }

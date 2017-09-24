@@ -25,7 +25,7 @@ abstract class ShortRollOnProperty extends RollOnQuality
     /**
      * @return Property
      */
-    protected function getProperty()
+    protected function getProperty(): Property
     {
         return $this->property;
     }

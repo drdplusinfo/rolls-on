@@ -162,7 +162,7 @@ class RollOnAnimalControlTest extends TestWithMockery
      * @param $previousFailuresCount
      * @param $isFatalFailure
      */
-    public function I_can_find_out_if_failed_fataly($roll, $defiance, $ride, $ridingSkill, $previousFailuresCount, $isFatalFailure)
+    public function I_can_find_out_if_failed_fatally($roll, $defiance, $ride, $ridingSkill, $previousFailuresCount, $isFatalFailure)
     {
         $rollOnAnimalControl = new RollOnAnimalControl(
             $this->createRollOnAgility($roll),

@@ -20,7 +20,7 @@ abstract class RollOnSituation extends StrictObject implements IntegerInterface
     /**
      * @return Roll2d6DrdPlus
      */
-    public function getRoll2d6Plus()
+    public function getRoll2d6Plus(): Roll2d6DrdPlus
     {
         return $this->roll2d6Plus;
     }

@@ -37,7 +37,7 @@ class BonusFromUsedRemarkableSense extends StrictObject implements PositiveInteg
     /**
      * @return int
      */
-    public function getValue()
+    public function getValue(): int
     {
         return $this->value;
     }

@@ -45,7 +45,7 @@ abstract class ShortRollOnPropertyTest extends TestWithMockery
     /**
      * @return string
      */
-    private function getRelatedBasePropertyClass()
+    private function getRelatedBasePropertyClass(): string
     {
         // like \DrdPlus\Properties\Base
         $basePropertyNamespace = (new \ReflectionClass(BaseProperty::class))->getNamespaceName();
@@ -59,7 +59,7 @@ abstract class ShortRollOnPropertyTest extends TestWithMockery
     /**
      * @return string
      */
-    private function getPropertyName()
+    private function getPropertyName(): string
     {
         if ($this->propertyName === null) {
             preg_match('~(?<propertyName>[A-Z][a-z]+)$~', self::getSutClass(), $matches);

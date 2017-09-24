@@ -25,7 +25,7 @@ class RollOnIntelligence extends RollOnQuality
     /**
      * @return Intelligence
      */
-    public function getIntelligence()
+    public function getIntelligence(): Intelligence
     {
         return $this->intelligence;
     }

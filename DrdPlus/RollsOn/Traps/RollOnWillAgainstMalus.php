@@ -6,7 +6,6 @@ use DrdPlus\RollsOn\QualityAndSuccess\SimpleRollOnSuccess;
 
 /**
  * Usable against trap by wounds for example
- *
  * @method RollOnWill getRollOnQuality
  */
 class RollOnWillAgainstMalus extends ExtendedRollOnSuccess
@@ -28,7 +27,7 @@ class RollOnWillAgainstMalus extends ExtendedRollOnSuccess
     /**
      * @return RollOnWill
      */
-    public function getRollOnWill()
+    public function getRollOnWill(): RollOnWill
     {
         return $this->getRollOnQuality();
     }
@@ -36,7 +35,7 @@ class RollOnWillAgainstMalus extends ExtendedRollOnSuccess
     /**
      * @return int
      */
-    public function getMalusValue()
+    public function getMalusValue(): int
     {
         return $this->getResult();
     }

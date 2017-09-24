@@ -111,14 +111,14 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
     /**
      * @param $value
      * @param $rollValue
-     * @param $rolledNumbers
+     * @param array $rolledNumbers
      * @return \Mockery\MockInterface|RollOnQuality
      */
-    private function createRollOnQuality($value, $rollValue = 'some roll value', $rolledNumbers = ['some', 'rolled', 'numbers'])
+    private function createRollOnQuality($value, $rollValue = 'some roll value', array $rolledNumbers = ['some', 'rolled', 'numbers'])
     {
         $rollOnQuality = $this->mockery(RollOnQuality::class);
         $rollOnQuality->shouldReceive('getPreconditionsSum')
-            ->andReturn('some preconditions sum');
+            ->andReturn(123);
         $rollOnQuality->shouldReceive('getValue')
             ->andReturn($value);
         $rollOnQuality->shouldReceive('getRoll')
@@ -219,6 +219,8 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
      * @test
      * @dataProvider provideSimpleRollsWithDifferentRollsOnQuality
      * @expectedException \DrdPlus\RollsOn\QualityAndSuccess\Exceptions\RollOnQualityHasToBeTheSame
+     * @param SimpleRollOnSuccess $firstSimpleRoll
+     * @param SimpleRollOnSuccess $secondSimpleRoll
      */
     public function I_can_not_use_different_rolls_on_quality(SimpleRollOnSuccess $firstSimpleRoll, SimpleRollOnSuccess $secondSimpleRoll)
     {
@@ -230,15 +232,15 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
         return [
             [ // different roll on quality value
                 $this->createSimpleRollOnSuccess(5, $this->createRollOnQuality(1)),
-                $this->createSimpleRollOnSuccess(9, $this->createRollOnQuality(2))
+                $this->createSimpleRollOnSuccess(9, $this->createRollOnQuality(2)),
             ],
             [ // different roll on quality roll value
                 $this->createSimpleRollOnSuccess(5, $this->createRollOnQuality(1, 1)),
-                $this->createSimpleRollOnSuccess(9, $this->createRollOnQuality(1, 2))
+                $this->createSimpleRollOnSuccess(9, $this->createRollOnQuality(1, 2)),
             ],
             [ // different roll on quality rolled numbers
                 $this->createSimpleRollOnSuccess(5, $this->createRollOnQuality(1, 2, [1, 2])),
-                $this->createSimpleRollOnSuccess(9, $this->createRollOnQuality(1, 2, [1, 3]))
+                $this->createSimpleRollOnSuccess(9, $this->createRollOnQuality(1, 2, [1, 3])),
             ],
         ];
     }

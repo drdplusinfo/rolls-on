@@ -9,7 +9,7 @@ class BasicRollOnSuccess extends SimpleRollOnSuccess implements BooleanInterface
     /**
      * @return bool
      */
-    public function getValue()
+    public function getValue(): bool
     {
         return $this->isSuccess();
     }

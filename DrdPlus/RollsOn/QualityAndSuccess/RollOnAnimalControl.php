@@ -44,7 +44,7 @@ class RollOnAnimalControl extends ExtendedRollOnSuccess
     /**
      * @return RollOnAgility
      */
-    public function getRollOnAgility()
+    public function getRollOnAgility(): RollOnAgility
     {
         return $this->getRollOnQuality();
     }
@@ -52,7 +52,7 @@ class RollOnAnimalControl extends ExtendedRollOnSuccess
     /**
      * @return bool
      */
-    public function isModerateFailure()
+    public function isModerateFailure(): bool
     {
         return $this->getResult() === self::MODERATE_FAILURE;
     }
@@ -60,7 +60,7 @@ class RollOnAnimalControl extends ExtendedRollOnSuccess
     /**
      * @return bool
      */
-    public function isFatalFailure()
+    public function isFatalFailure(): bool
     {
         return $this->getResult() === self::FATAL_FAILURE;
     }
@@ -68,7 +68,7 @@ class RollOnAnimalControl extends ExtendedRollOnSuccess
     /**
      * @return bool
      */
-    public function isFailure()
+    public function isFailure(): bool
     {
         // even moderate failure is failure on riding an animal
         return $this->isFatalFailure() || $this->isModerateFailure();
@@ -77,7 +77,7 @@ class RollOnAnimalControl extends ExtendedRollOnSuccess
     /**
      * @return bool
      */
-    public function isSuccess()
+    public function isSuccess(): bool
     {
         return !$this->isFailure();
     }

@@ -14,7 +14,7 @@ class RollOnSensesTest extends RollOnQualityTest
      * @param Roll2d6DrdPlus $roll2D6DrdPlus
      * @return RollOnSenses
      */
-    protected function createSutInstance(Property $property, Roll2d6DrdPlus $roll2D6DrdPlus)
+    protected function createSutInstance(Property $property, Roll2d6DrdPlus $roll2D6DrdPlus): RollOnSenses
     {
         self::assertInstanceOf(Senses::class, $property);
 

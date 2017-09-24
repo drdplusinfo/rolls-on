@@ -25,7 +25,7 @@ class RollOnAgility extends RollOnQuality
     /**
      * @return Agility
      */
-    public function getAgility()
+    public function getAgility(): Agility
     {
         return $this->agility;
     }
