@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Tests\RollsOn\QualityAndSuccess;
 
-use Drd\DiceRolls\Roll;
+use DrdPlus\DiceRolls\Roll;
 use DrdPlus\RollsOn\QualityAndSuccess\ExtendedRollOnSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnKnowledge;
 use DrdPlus\RollsOn\Traps\ShortRollOnIntelligence;

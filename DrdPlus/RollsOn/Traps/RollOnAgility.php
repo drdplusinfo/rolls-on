@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\RollsOn\Traps;
 
-use Drd\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
+use DrdPlus\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
 use DrdPlus\Properties\Base\Agility;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 

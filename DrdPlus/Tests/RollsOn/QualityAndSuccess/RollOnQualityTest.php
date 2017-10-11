@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Tests\RollsOn\QualityAndSuccess;
 
-use Drd\DiceRolls\Roll;
+use DrdPlus\DiceRolls\Roll;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use Granam\Tests\Tools\TestWithMockery;
 

@@ -1,8 +1,8 @@
 <?php
 namespace DrdPlus\RollsOn;
 
-use Drd\DiceRolls\Roller;
-use Drd\DiceRolls\Templates\Rollers\Roller2d6DrdPlus;
+use DrdPlus\DiceRolls\Roller;
+use DrdPlus\DiceRolls\Templates\Rollers\Roller2d6DrdPlus;
 use DrdPlus\Properties\Base\Will;
 use DrdPlus\RollsOn\QualityAndSuccess\BasicRollOnSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;

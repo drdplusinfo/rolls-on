@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Tests\RollsOn\Traps;
 
-use Drd\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
+use DrdPlus\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
 use DrdPlus\Properties\Derived\Senses;
 use DrdPlus\Properties\Property;
 use DrdPlus\RollsOn\Traps\BonusFromUsedRemarkableSense;

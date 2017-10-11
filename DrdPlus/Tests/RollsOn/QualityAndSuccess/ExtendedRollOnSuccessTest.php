@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Tests\RollsOn\QualityAndSuccess;
 
-use Drd\DiceRolls\Roll;
+use DrdPlus\DiceRolls\Roll;
 use DrdPlus\RollsOn\QualityAndSuccess\BasicRollOnSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\ExtendedRollOnSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
@@ -114,7 +114,7 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
      * @param array $rolledNumbers
      * @return \Mockery\MockInterface|RollOnQuality
      */
-    private function createRollOnQuality($value, $rollValue = 'some roll value', array $rolledNumbers = ['some', 'rolled', 'numbers'])
+    private function createRollOnQuality($value, int $rollValue = 999, array $rolledNumbers = ['some', 'rolled', 'numbers'])
     {
         $rollOnQuality = $this->mockery(RollOnQuality::class);
         $rollOnQuality->shouldReceive('getPreconditionsSum')

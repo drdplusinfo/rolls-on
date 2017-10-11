@@ -1,7 +1,7 @@
 <?php
 namespace DrdPlus\Tests\RollsOn\Situations;
 
-use Drd\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
+use DrdPlus\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
 use Granam\Tests\Tools\TestWithMockery;
 
 abstract class RollOnSituationTest extends TestWithMockery
