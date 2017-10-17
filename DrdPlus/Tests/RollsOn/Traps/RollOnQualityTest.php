@@ -35,7 +35,7 @@ abstract class RollOnQualityTest extends TestWithMockery
      * @param Roll2d6DrdPlus $roll2D6DrdPlus
      * @return RollOnQuality
      */
-    protected function createSutInstance(Property $property, Roll2d6DrdPlus $roll2D6DrdPlus)
+    protected function createSutInstance(Property $property, Roll2d6DrdPlus $roll2D6DrdPlus): RollOnQuality
     {
         $sutClass = self::getSutClass();
 

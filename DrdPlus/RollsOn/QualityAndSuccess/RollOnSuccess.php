@@ -7,7 +7,7 @@ interface RollOnSuccess
     /**
      * @return RollOnQuality
      */
-    public function getRollOnQuality();
+    public function getRollOnQuality(): RollOnQuality;
 
     /**
      * @return bool

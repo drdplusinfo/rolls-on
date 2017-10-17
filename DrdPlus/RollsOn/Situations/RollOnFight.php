@@ -29,7 +29,7 @@ class RollOnFight extends RollOnSituation
     /**
      * @return int
      */
-    public function getFightNumber()
+    public function getFightNumber(): int
     {
         return $this->fightNumber;
     }
@@ -37,7 +37,7 @@ class RollOnFight extends RollOnSituation
     /**
      * @return int
      */
-    public function getValue()
+    public function getValue(): int
     {
         return $this->getFightNumber() + $this->getRoll2d6Plus()->getValue();
     }

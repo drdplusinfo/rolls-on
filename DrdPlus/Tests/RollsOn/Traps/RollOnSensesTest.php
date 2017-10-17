@@ -4,6 +4,7 @@ namespace DrdPlus\Tests\RollsOn\Traps;
 use DrdPlus\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
 use DrdPlus\Properties\Derived\Senses;
 use DrdPlus\Properties\Property;
+use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use DrdPlus\RollsOn\Traps\BonusFromUsedRemarkableSense;
 use DrdPlus\RollsOn\Traps\RollOnSenses;
 
@@ -12,9 +13,9 @@ class RollOnSensesTest extends RollOnQualityTest
     /**
      * @param Property $property
      * @param Roll2d6DrdPlus $roll2D6DrdPlus
-     * @return RollOnSenses
+     * @return RollOnSenses|RollOnQuality
      */
-    protected function createSutInstance(Property $property, Roll2d6DrdPlus $roll2D6DrdPlus): RollOnSenses
+    protected function createSutInstance(Property $property, Roll2d6DrdPlus $roll2D6DrdPlus): RollOnQuality
     {
         self::assertInstanceOf(Senses::class, $property);
 
