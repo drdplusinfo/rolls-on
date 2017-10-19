@@ -57,7 +57,7 @@ class SimpleRollOnSuccessTest extends TestWithMockery
      * @param $value
      * @return \Mockery\MockInterface|Roll
      */
-    private function createRoll($value)
+    protected function createRoll($value): Roll
     {
         $roll = $this->mockery(Roll::class);
         $roll->shouldReceive('getValue')
