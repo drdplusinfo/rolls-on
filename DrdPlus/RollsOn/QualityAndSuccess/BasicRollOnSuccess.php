@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace DrdPlus\RollsOn\QualityAndSuccess;
 
 use Granam\Boolean\BooleanInterface;

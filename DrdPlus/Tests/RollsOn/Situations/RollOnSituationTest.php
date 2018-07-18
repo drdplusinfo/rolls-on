@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace DrdPlus\Tests\RollsOn\Situations;
 
 use DrdPlus\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;

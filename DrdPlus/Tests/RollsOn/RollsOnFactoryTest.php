@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace DrdPlus\RollsOn;
 
 use DrdPlus\DiceRolls\Roll;
@@ -17,11 +19,10 @@ class RollsOnFactoryTest extends TestWithMockery
     /**
      * @test
      */
-    public function I_can_make_roll_on_fight()
+    public function I_can_make_roll_on_fight(): void
     {
         $rollsOn = new RollsOnFactory($roller = $this->createRoller2d6DrdPlus($rollValue = 123));
         $rollOnFight = $rollsOn->makeRollOnFight($fightNumber = 55667788);
-        self::assertInstanceOf(RollOnFight::class, $rollOnFight);
         self::assertSame($fightNumber, $rollOnFight->getFightNumber());
         self::assertSame($fightNumber + $rollValue, $rollOnFight->getValue());
     }
@@ -75,7 +76,6 @@ class RollsOnFactoryTest extends TestWithMockery
             $preconditionsSum = 456,
             $this->createRoller($roll = $this->createRoll())
         );
-        self::assertInstanceOf(BasicRollOnSuccess::class, $basicRollOnSuccess);
         self::assertSame($difficulty, $basicRollOnSuccess->getDifficulty());
         self::assertInstanceOf(RollOnQuality::class, $rollOnQuality = $basicRollOnSuccess->getRollOnQuality());
 
@@ -123,13 +123,11 @@ class RollsOnFactoryTest extends TestWithMockery
 
         $malusRollOnWill = $rollsOnFactory->makeMalusRollOnWill(Will::getIt($willValue));
         self::assertSame($expectedMalus, $malusRollOnWill->getMalusValue());
-        self::assertInstanceOf(RollOnWillAgainstMalus::class, $malusRollOnWill);
-        self::assertInstanceOf(RollOnQuality::class, $malusRollOnWill->getRollOnWill());
         self::assertSame($malusRollOnWill->getRollOnQuality(), $malusRollOnWill->getRollOnWill());
         self::assertInstanceOf(RollOnQuality::class, $rollOnQuality = $malusRollOnWill->getRollOnQuality());
     }
 
-    public function provideMalusRollAndWill()
+    public function provideMalusRollAndWill(): array
     {
         return [
             [2, 2, -3],
