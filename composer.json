@@ -1,5 +1,5 @@
 {
-  "name": "drd-plus/rolls-on",
+  "name": "drdplus/rolls-on",
   "license": "MIT",
   "type": "project",
   "description": "Drd+ rolls by dices covering specific situations",
@@ -13,8 +13,8 @@
     "granam/strict-object": "^3.0",
     "granam/integer": "^6.1",
     "granam/boolean": "^3.1",
-    "drd-plus/dice-rolls": "^4.1",
-    "drd-plus/properties": "^1.0"
+    "drdplus/dice-rolls": "^4.1",
+    "drdplus/properties": "^1.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
