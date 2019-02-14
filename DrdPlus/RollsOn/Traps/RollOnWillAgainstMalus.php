@@ -12,10 +12,10 @@ use DrdPlus\RollsOn\QualityAndSuccess\SimpleRollOnSuccess;
  */
 class RollOnWillAgainstMalus extends ExtendedRollOnSuccess
 {
-    const HIGHEST_MALUS = -3;
-    const MEDIUM_MALUS = -2;
-    const LOWEST_MALUS = -1;
-    const WITHOUT_MALUS = 0;
+    public const HIGHEST_MALUS = -3;
+    public const MEDIUM_MALUS = -2;
+    public const LOWEST_MALUS = -1;
+    public const WITHOUT_MALUS = 0;
 
     public function __construct(RollOnWill $rollOnWill)
     {
@@ -26,17 +26,11 @@ class RollOnWillAgainstMalus extends ExtendedRollOnSuccess
         );
     }
 
-    /**
-     * @return RollOnWill
-     */
     public function getRollOnWill(): RollOnWill
     {
         return $this->getRollOnQuality();
     }
 
-    /**
-     * @return int
-     */
     public function getMalusValue(): int
     {
         return $this->getResult();

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace DrdPlus\RollsOn\Traps;
 
-use DrdPlus\DiceRolls\Templates\Rolls\Roll1d6;
-use DrdPlus\Properties\Property;
+use Granam\DiceRolls\Templates\Rolls\Roll1d6;
+use DrdPlus\BaseProperties\Property;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 
 abstract class ShortRollOnProperty extends RollOnQuality
@@ -24,9 +24,6 @@ abstract class ShortRollOnProperty extends RollOnQuality
         parent::__construct($property->getValue(), $roll1d6);
     }
 
-    /**
-     * @return Property
-     */
     protected function getProperty(): Property
     {
         return $this->property;

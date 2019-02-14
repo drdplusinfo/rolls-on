@@ -7,13 +7,8 @@ use Granam\Boolean\BooleanInterface;
 
 class BasicRollOnSuccess extends SimpleRollOnSuccess implements BooleanInterface
 {
-
-    /**
-     * @return bool
-     */
     public function getValue(): bool
     {
         return $this->isSuccess();
     }
-
 }

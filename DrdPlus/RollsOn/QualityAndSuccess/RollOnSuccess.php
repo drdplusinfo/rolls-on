@@ -6,14 +6,8 @@ namespace DrdPlus\RollsOn\QualityAndSuccess;
 interface RollOnSuccess
 {
 
-    /**
-     * @return RollOnQuality
-     */
     public function getRollOnQuality(): RollOnQuality;
 
-    /**
-     * @return bool
-     */
     public function isSuccess(): bool;
 
     /**
@@ -21,9 +15,6 @@ interface RollOnSuccess
      */
     public function getResult();
 
-    /**
-     * @return bool
-     */
     public function isFailure(): bool;
 
     /**

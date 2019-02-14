@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace DrdPlus\Tests\RollsOn\Traps;
 
-use DrdPlus\DiceRolls\Templates\Rolls\Roll1d6;
-use DrdPlus\Properties\Base\BaseProperty;
-use DrdPlus\Properties\Property;
+use Granam\DiceRolls\Templates\Rolls\Roll1d6;
+use DrdPlus\BaseProperties\BaseProperty;
+use DrdPlus\BaseProperties\Property;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use DrdPlus\RollsOn\Traps\ShortRollOnProperty;
 use Granam\Tests\Tools\TestWithMockery;
@@ -52,7 +52,7 @@ abstract class ShortRollOnPropertyTest extends TestWithMockery
         // like \DrdPlus\Properties\Base
         $basePropertyNamespace = (new \ReflectionClass(BaseProperty::class))->getNamespaceName();
 
-        // like \DrdPlus\Properties\Base\Intelligence
+        // like \DrdPlus\BaseProperties\Intelligence
         return $basePropertyNamespace . '\\' . $this->getPropertyName();
     }
 

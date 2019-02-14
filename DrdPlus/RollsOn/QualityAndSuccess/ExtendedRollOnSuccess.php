@@ -53,13 +53,9 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
         return $this->sortByDifficultyDescending($simpleRollsOnSuccess);
     }
 
-    /**
-     * @param array $values
-     * @return array
-     */
     private function removeNulls(array $values): array
     {
-        return array_filter(
+        return \array_filter(
             $values,
             function ($value) {
                 return $value !== null;
@@ -148,15 +144,11 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
         }
     }
 
-    /**
-     * @param RollOnQuality $rollOnQuality
-     * @return string
-     */
     private function describeRollOnQuality(RollOnQuality $rollOnQuality): string
     {
         return "sum of preconditions: {$rollOnQuality->getPreconditionsSum()}, value: {$rollOnQuality->getValue()}"
             . ", roll value {$rollOnQuality->getRoll()->getValue()}, rolled numbers "
-            . implode(',', $rollOnQuality->getRoll()->getRolledNumbers());
+            . \implode(',', $rollOnQuality->getRoll()->getRolledNumbers());
     }
 
     /**
@@ -165,7 +157,7 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
      */
     private function sortByDifficultyDescending(array $simpleRollsOnSuccess): array
     {
-        usort($simpleRollsOnSuccess, function (SimpleRollOnSuccess $simpleRollOnSuccess, SimpleRollOnSuccess $anotherSimpleRollOnSuccess) {
+        \usort($simpleRollsOnSuccess, function (SimpleRollOnSuccess $simpleRollOnSuccess, SimpleRollOnSuccess $anotherSimpleRollOnSuccess) {
             // with lesser difficulty on top (descending order)
             return $anotherSimpleRollOnSuccess->getDifficulty() <=> $simpleRollOnSuccess->getDifficulty();
         });
@@ -185,25 +177,16 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
         return $simpleRollOnSuccess->getRollOnQuality();
     }
 
-    /**
-     * @return RollOnQuality
-     */
     public function getRollOnQuality(): RollOnQuality
     {
         return $this->rollOnQuality;
     }
 
-    /**
-     * @return bool
-     */
     public function isSuccess(): bool
     {
         return $this->getResultSimpleRollOnSuccess()->isSuccess();
     }
 
-    /**
-     * @return SimpleRollOnSuccess
-     */
     protected function getResultSimpleRollOnSuccess(): SimpleRollOnSuccess
     {
         foreach ($this->rollsOnSuccess as $rollOnSuccess) {
@@ -212,12 +195,9 @@ class ExtendedRollOnSuccess extends StrictObject implements RollOnSuccess
             }
         }
 
-        return end($this->rollsOnSuccess); // the roll with lowest (yet not passed) difficulty
+        return \end($this->rollsOnSuccess); // the roll with lowest (yet not passed) difficulty
     }
 
-    /**
-     * @return bool
-     */
     public function isFailure(): bool
     {
         return !$this->isSuccess();

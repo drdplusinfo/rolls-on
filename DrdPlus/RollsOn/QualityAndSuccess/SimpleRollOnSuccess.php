@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace DrdPlus\RollsOn\QualityAndSuccess;
 
-use DrdPlus\DiceRolls\Roll;
+use Granam\DiceRolls\Roll;
 use Granam\Integer\IntegerInterface;
 use Granam\Integer\Tools\ToInteger;
 use Granam\Scalar\ScalarInterface;
@@ -12,6 +12,9 @@ use Granam\Strict\Object\StrictObject;
 
 class SimpleRollOnSuccess extends StrictObject implements RollOnSuccess
 {
+    public const DEFAULT_SUCCESS_RESULT_CODE = 'success';
+    public const DEFAULT_FAILURE_RESULT_CODE = 'failure';
+
     /**
      * @var int
      */
@@ -28,9 +31,6 @@ class SimpleRollOnSuccess extends StrictObject implements RollOnSuccess
      * @var string
      */
     private $failureValue;
-
-    const DEFAULT_SUCCESS_RESULT_CODE = 'success';
-    const DEFAULT_FAILURE_RESULT_CODE = 'failure';
 
     /**
      * @param int|IntegerInterface $difficulty
@@ -54,25 +54,16 @@ class SimpleRollOnSuccess extends StrictObject implements RollOnSuccess
         $this->failureValue = ToScalar::toScalar($failureValue);
     }
 
-    /**
-     * @return int
-     */
     public function getDifficulty(): int
     {
         return $this->difficulty;
     }
 
-    /**
-     * @return RollOnQuality
-     */
     public function getRollOnQuality(): RollOnQuality
     {
         return $this->rollOnQuality;
     }
 
-    /**
-     * @return bool
-     */
     public function isSuccess(): bool
     {
         return $this->getDifficulty() <= $this->getRollOnQuality()->getValue();
@@ -88,9 +79,6 @@ class SimpleRollOnSuccess extends StrictObject implements RollOnSuccess
             : $this->failureValue;
     }
 
-    /**
-     * @return bool
-     */
     public function isFailure(): bool
     {
         return !$this->isSuccess();

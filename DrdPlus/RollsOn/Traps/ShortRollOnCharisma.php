@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace DrdPlus\RollsOn\Traps;
 
-use DrdPlus\DiceRolls\Templates\Rolls\Roll1d6;
-use DrdPlus\Properties\Base\Charisma;
-use DrdPlus\Properties\Property;
+use Granam\DiceRolls\Templates\Rolls\Roll1d6;
+use DrdPlus\BaseProperties\Charisma;
+use DrdPlus\BaseProperties\Property;
 
 class ShortRollOnCharisma extends ShortRollOnProperty
 {
@@ -21,7 +21,7 @@ class ShortRollOnCharisma extends ShortRollOnProperty
     /**
      * @return Charisma|Property
      */
-    public function getCharisma()
+    public function getCharisma(): Charisma
     {
         return $this->getProperty();
     }

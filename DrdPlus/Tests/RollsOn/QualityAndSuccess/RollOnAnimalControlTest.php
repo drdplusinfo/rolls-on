@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace DrdPlus\Tests\RollsOn\QualityAndSuccess;
 
-use DrdPlus\DiceRolls\Roll;
+use Granam\DiceRolls\Roll;
 use DrdPlus\RollsOn\QualityAndSuccess\Requirements\AnimalDefiance;
 use DrdPlus\RollsOn\QualityAndSuccess\Requirements\PreviousFailuresCount;
 use DrdPlus\RollsOn\QualityAndSuccess\Requirements\Ride;

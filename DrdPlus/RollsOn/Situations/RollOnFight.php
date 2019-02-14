@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace DrdPlus\RollsOn\Situations;
 
-use DrdPlus\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
+use Granam\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
 use Granam\Integer\IntegerInterface;
 use Granam\Integer\Tools\ToInteger;
 
@@ -28,17 +28,11 @@ class RollOnFight extends RollOnSituation
         $this->fightNumber = ToInteger::toInteger($fightNumber);
     }
 
-    /**
-     * @return int
-     */
     public function getFightNumber(): int
     {
         return $this->fightNumber;
     }
 
-    /**
-     * @return int
-     */
     public function getValue(): int
     {
         return $this->getFightNumber() + $this->getRoll2d6Plus()->getValue();

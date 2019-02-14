@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace DrdPlus\Tests\RollsOn\QualityAndSuccess;
 
-use DrdPlus\DiceRolls\Roll;
+use Granam\DiceRolls\Roll;
 use DrdPlus\RollsOn\QualityAndSuccess\BasicRollOnSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\ExtendedRollOnSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;

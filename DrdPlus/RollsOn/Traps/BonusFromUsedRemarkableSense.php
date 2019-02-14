@@ -17,12 +17,6 @@ class BonusFromUsedRemarkableSense extends StrictObject implements PositiveInteg
      */
     private $value;
 
-    /**
-     * @param RaceCode $raceCode
-     * @param SubRaceCode $subRaceCode
-     * @param RemarkableSenseCode $usedSenseCode
-     * @param Tables $tables
-     */
     public function __construct(
         RaceCode $raceCode,
         SubRaceCode $subRaceCode,
@@ -36,9 +30,6 @@ class BonusFromUsedRemarkableSense extends StrictObject implements PositiveInteg
         }
     }
 
-    /**
-     * @return int
-     */
     public function getValue(): int
     {
         return $this->value;

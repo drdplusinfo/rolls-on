@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace DrdPlus\RollsOn;
 
-use DrdPlus\DiceRolls\Roller;
-use DrdPlus\DiceRolls\Templates\Rollers\Roller2d6DrdPlus;
-use DrdPlus\Properties\Base\Will;
+use DrdPlus\BaseProperties\Will;
 use DrdPlus\RollsOn\QualityAndSuccess\BasicRollOnSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use DrdPlus\RollsOn\Situations\RollOnFight;
 use DrdPlus\RollsOn\Traps\RollOnWillAgainstMalus;
 use DrdPlus\RollsOn\Traps\RollOnWill;
+use Granam\DiceRolls\Roller;
+use Granam\DiceRolls\Templates\Rollers\Roller2d6DrdPlus;
 use Granam\Integer\IntegerInterface;
 use Granam\Strict\Object\StrictObject;
 
@@ -33,7 +33,6 @@ class RollsOnFactory extends StrictObject
      */
     public function makeRollOnFight($fightNumber): RollOnFight
     {
-        /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
         return new RollOnFight($fightNumber, $this->roller2d6DrdPlus->roll());
     }
 
@@ -44,7 +43,6 @@ class RollsOnFactory extends StrictObject
      */
     public function makeRollOnQuality($preconditionsSum, Roller $roller): RollOnQuality
     {
-        /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
         return new RollOnQuality($preconditionsSum, $roller->roll());
     }
 
@@ -65,7 +63,6 @@ class RollsOnFactory extends StrictObject
      */
     public function makeBasicRollOnSuccess($difficulty, $preconditionsSum, Roller $roller): BasicRollOnSuccess
     {
-        /** @noinspection ExceptionsAnnotatingAndHandlingInspection */
         return new BasicRollOnSuccess($difficulty, $this->makeRollOnQuality($preconditionsSum, $roller));
     }
 

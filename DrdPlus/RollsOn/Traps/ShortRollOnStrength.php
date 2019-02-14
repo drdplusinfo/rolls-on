@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace DrdPlus\RollsOn\Traps;
 
-use DrdPlus\DiceRolls\Templates\Rolls\Roll1d6;
-use DrdPlus\Properties\Base\Strength;
-use DrdPlus\Properties\Property;
+use Granam\DiceRolls\Templates\Rolls\Roll1d6;
+use DrdPlus\BaseProperties\Strength;
+use DrdPlus\BaseProperties\Property;
 
 class ShortRollOnStrength extends ShortRollOnProperty
 {
@@ -22,7 +22,7 @@ class ShortRollOnStrength extends ShortRollOnProperty
     /**
      * @return Strength|Property
      */
-    public function getStrength()
+    public function getStrength(): Strength
     {
         return $this->getProperty();
     }

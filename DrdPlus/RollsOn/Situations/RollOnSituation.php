@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace DrdPlus\RollsOn\Situations;
 
-use DrdPlus\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
+use Granam\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
 use Granam\Integer\IntegerInterface;
 use Granam\Strict\Object\StrictObject;
 
@@ -19,9 +19,6 @@ abstract class RollOnSituation extends StrictObject implements IntegerInterface
         $this->roll2d6Plus = $roll2d6Plus;
     }
 
-    /**
-     * @return Roll2d6DrdPlus
-     */
     public function getRoll2d6Plus(): Roll2d6DrdPlus
     {
         return $this->roll2d6Plus;

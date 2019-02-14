@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace DrdPlus\Tests\RollsOn\Traps;
 
-use DrdPlus\DiceRolls\Templates\Rollers\Roller2d6DrdPlus;
-use DrdPlus\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
-use DrdPlus\Properties\Base\BaseProperty;
+use Granam\DiceRolls\Templates\Rollers\Roller2d6DrdPlus;
+use Granam\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
+use DrdPlus\BaseProperties\BaseProperty;
 use DrdPlus\Properties\Derived\DerivedProperty;
-use DrdPlus\Properties\Property;
+use DrdPlus\BaseProperties\Property;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use Granam\Tests\Tools\TestWithMockery;
 

@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace DrdPlus\RollsOn\Traps;
 
-use DrdPlus\DiceRolls\Templates\Rolls\Roll1d6;
-use DrdPlus\Properties\Base\Intelligence;
-use DrdPlus\Properties\Property;
+use Granam\DiceRolls\Templates\Rolls\Roll1d6;
+use DrdPlus\BaseProperties\Intelligence;
+use DrdPlus\BaseProperties\Property;
 
 class ShortRollOnIntelligence extends ShortRollOnProperty
 {
@@ -21,7 +21,7 @@ class ShortRollOnIntelligence extends ShortRollOnProperty
     /**
      * @return Intelligence|Property
      */
-    public function getIntelligence()
+    public function getIntelligence(): Intelligence
     {
         return $this->getProperty();
     }

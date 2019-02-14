@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace DrdPlus\Tests\RollsOn\Traps;
 
-use DrdPlus\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
+use Granam\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
 use DrdPlus\Properties\Derived\Senses;
-use DrdPlus\Properties\Property;
+use DrdPlus\BaseProperties\Property;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use DrdPlus\RollsOn\Traps\BonusFromUsedRemarkableSense;
 use DrdPlus\RollsOn\Traps\RollOnSenses;

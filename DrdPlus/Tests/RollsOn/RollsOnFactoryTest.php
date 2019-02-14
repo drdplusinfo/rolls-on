@@ -3,15 +3,12 @@ declare(strict_types=1);
 
 namespace DrdPlus\RollsOn;
 
-use DrdPlus\DiceRolls\Roll;
-use DrdPlus\DiceRolls\Roller;
-use DrdPlus\DiceRolls\Templates\Rollers\Roller2d6DrdPlus;
-use DrdPlus\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
-use DrdPlus\Properties\Base\Will;
-use DrdPlus\RollsOn\QualityAndSuccess\BasicRollOnSuccess;
+use Granam\DiceRolls\Roll;
+use Granam\DiceRolls\Roller;
+use Granam\DiceRolls\Templates\Rollers\Roller2d6DrdPlus;
+use Granam\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
+use DrdPlus\BaseProperties\Will;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
-use DrdPlus\RollsOn\Situations\RollOnFight;
-use DrdPlus\RollsOn\Traps\RollOnWillAgainstMalus;
 use Granam\Tests\Tools\TestWithMockery;
 
 class RollsOnFactoryTest extends TestWithMockery

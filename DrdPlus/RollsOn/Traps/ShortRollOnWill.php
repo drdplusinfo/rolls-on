@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace DrdPlus\RollsOn\Traps;
 
-use DrdPlus\DiceRolls\Templates\Rolls\Roll1d6;
-use DrdPlus\Properties\Base\Will;
-use DrdPlus\Properties\Property;
+use Granam\DiceRolls\Templates\Rolls\Roll1d6;
+use DrdPlus\BaseProperties\Will;
+use DrdPlus\BaseProperties\Property;
 
 class ShortRollOnWill extends ShortRollOnProperty
 {
@@ -21,7 +21,7 @@ class ShortRollOnWill extends ShortRollOnProperty
     /**
      * @return Will|Property
      */
-    public function getWill()
+    public function getWill(): Will
     {
         return $this->getProperty();
     }

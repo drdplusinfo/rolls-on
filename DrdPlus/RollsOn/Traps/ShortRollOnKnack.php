@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace DrdPlus\RollsOn\Traps;
 
-use DrdPlus\DiceRolls\Templates\Rolls\Roll1d6;
-use DrdPlus\Properties\Base\Knack;
-use DrdPlus\Properties\Property;
+use Granam\DiceRolls\Templates\Rolls\Roll1d6;
+use DrdPlus\BaseProperties\Knack;
+use DrdPlus\BaseProperties\Property;
 
 class ShortRollOnKnack extends ShortRollOnProperty
 {
@@ -21,7 +21,7 @@ class ShortRollOnKnack extends ShortRollOnProperty
     /**
      * @return Knack|Property
      */
-    public function getKnack()
+    public function getKnack(): Knack
     {
         return $this->getProperty();
     }

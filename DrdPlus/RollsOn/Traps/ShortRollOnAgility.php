@@ -3,16 +3,12 @@ declare(strict_types=1);
 
 namespace DrdPlus\RollsOn\Traps;
 
-use DrdPlus\DiceRolls\Templates\Rolls\Roll1d6;
-use DrdPlus\Properties\Base\Agility;
-use DrdPlus\Properties\Property;
+use DrdPlus\BaseProperties\Property;
+use Granam\DiceRolls\Templates\Rolls\Roll1d6;
+use DrdPlus\BaseProperties\Agility;
 
 class ShortRollOnAgility extends ShortRollOnProperty
 {
-    /**
-     * @param Agility $agility
-     * @param Roll1d6 $roll1d6
-     */
     public function __construct(Agility $agility, Roll1d6 $roll1d6)
     {
         parent::__construct($agility, $roll1d6);
@@ -21,7 +17,7 @@ class ShortRollOnAgility extends ShortRollOnProperty
     /**
      * @return Agility|Property
      */
-    public function getAgility()
+    public function getAgility(): Agility
     {
         return $this->getProperty();
     }

@@ -7,14 +7,14 @@ use Granam\Tests\ExceptionsHierarchy\Exceptions\AbstractExceptionsHierarchyTest;
 
 class RollsOnExceptionsHierarchyTest extends AbstractExceptionsHierarchyTest
 {
-    protected function getTestedNamespace()
+    protected function getTestedNamespace(): string
     {
         return $this->getRootNamespace();
     }
 
-    protected function getRootNamespace()
+    protected function getRootNamespace(): string
     {
-        return str_replace('\\Tests', '', __NAMESPACE__);
+        return \str_replace('\\Tests', '', __NAMESPACE__);
     }
 
 }

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace DrdPlus\Tests\RollsOn\Traps;
 
-use DrdPlus\DiceRolls\Roll;
+use Granam\DiceRolls\Roll;
 use DrdPlus\RollsOn\Traps\RollOnWillAgainstMalus;
 use DrdPlus\RollsOn\Traps\RollOnWill;
 use Granam\Tests\Tools\TestWithMockery;
