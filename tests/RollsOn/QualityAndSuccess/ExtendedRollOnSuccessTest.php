@@ -19,7 +19,7 @@ class ExtendedRollOnSuccessTest extends TestWithMockery
      * @param string $expectedResultCode
      * @param bool $expectingSuccess
      */
-    public function I_can_use_it(RollOnQuality $expectedRollOnQuality, array $simpleRollsOnSuccess, $expectedResultCode, $expectingSuccess)
+    public function I_can_use_it(RollOnQuality $expectedRollOnQuality, array $simpleRollsOnSuccess, string $expectedResultCode, bool $expectingSuccess)
     {
         $extendedRollOnSuccessReflection = new \ReflectionClass(ExtendedRollOnSuccess::class);
         /** @var ExtendedRollOnSuccess $extendedRollOnSuccess */

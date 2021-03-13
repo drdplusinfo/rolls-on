@@ -5,7 +5,12 @@
   "description": "Drd+ rolls by dices covering specific situations",
   "autoload": {
     "psr-4": {
-      "DrdPlus\\": "DrdPlus/"
+      "DrdPlus\\RollsOn\\": "RollsOn"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "DrdPlus\\Tests\\": "tests"
     }
   },
   "require": {
