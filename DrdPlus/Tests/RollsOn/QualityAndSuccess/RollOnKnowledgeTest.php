@@ -6,7 +6,7 @@ use Granam\DiceRolls\Roll;
 use DrdPlus\RollsOn\QualityAndSuccess\ExtendedRollOnSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnKnowledge;
 use DrdPlus\RollsOn\Traps\ShortRollOnIntelligence;
-use Granam\Tests\Tools\TestWithMockery;
+use Granam\TestWithMockery\TestWithMockery;
 
 class RollOnKnowledgeTest extends TestWithMockery
 {

@@ -5,7 +5,7 @@ namespace DrdPlus\Tests\RollsOn\QualityAndSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\BasicRollOnSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use Granam\Boolean\BooleanInterface;
-use Granam\Tests\Tools\TestWithMockery;
+use Granam\TestWithMockery\TestWithMockery;
 
 class BasicRollOnSuccessTest extends TestWithMockery
 {

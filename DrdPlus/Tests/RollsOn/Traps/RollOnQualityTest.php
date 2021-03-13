@@ -8,7 +8,7 @@ use DrdPlus\BaseProperties\BaseProperty;
 use DrdPlus\Properties\Derived\DerivedProperty;
 use DrdPlus\BaseProperties\Property;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
-use Granam\Tests\Tools\TestWithMockery;
+use Granam\TestWithMockery\TestWithMockery;
 
 abstract class RollOnQualityTest extends TestWithMockery
 {

@@ -4,7 +4,7 @@ namespace DrdPlus\Tests\RollsOn\QualityAndSuccess;
 
 use Granam\DiceRolls\Roll;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
-use Granam\Tests\Tools\TestWithMockery;
+use Granam\TestWithMockery\TestWithMockery;
 
 class RollOnQualityTest extends TestWithMockery
 {

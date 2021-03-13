@@ -9,13 +9,17 @@
     }
   },
   "require": {
-    "php": ">=7.1",
+    "php": ">=7.3",
     "drdplus/properties": "^2.1"
   },
   "require-dev": {
-    "roave/security-advisories": "dev-master",
-    "phpunit/phpunit": "^8.3",
+    "granam/exceptions-hierarchy": "^5.0",
+    "granam/test-with-mockery": "^2.0",
     "mockery/mockery": "^1.2",
-    "granam/exceptions-hierarchy": "^5.0"
+    "phpunit/phpunit": "^9.0",
+    "roave/security-advisories": "dev-master"
+  },
+  "config": {
+    "sort-packages": true
   }
 }

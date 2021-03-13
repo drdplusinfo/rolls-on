@@ -8,7 +8,7 @@ use DrdPlus\Codes\SubRaceCode;
 use DrdPlus\RollsOn\Traps\BonusFromUsedRemarkableSense;
 use DrdPlus\Tables\Races\RacesTable;
 use DrdPlus\Tables\Tables;
-use Granam\Tests\Tools\TestWithMockery;
+use Granam\TestWithMockery\TestWithMockery;
 
 class BonusFromUsedRemarkableSenseTest extends TestWithMockery
 {

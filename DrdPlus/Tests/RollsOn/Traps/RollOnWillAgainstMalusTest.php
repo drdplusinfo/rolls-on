@@ -5,7 +5,7 @@ namespace DrdPlus\Tests\RollsOn\Traps;
 use Granam\DiceRolls\Roll;
 use DrdPlus\RollsOn\Traps\RollOnWillAgainstMalus;
 use DrdPlus\RollsOn\Traps\RollOnWill;
-use Granam\Tests\Tools\TestWithMockery;
+use Granam\TestWithMockery\TestWithMockery;
 
 class RollOnWillAgainstMalusTest extends TestWithMockery
 {

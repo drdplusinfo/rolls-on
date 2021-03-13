@@ -1,14 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace DrdPlus\RollsOn;
+namespace DrdPlus\Tests\RollsOn;
 
+use DrdPlus\RollsOn\RollsOnFactory;
 use Granam\DiceRolls\Roll;
 use Granam\DiceRolls\Roller;
 use Granam\DiceRolls\Templates\Rollers\Roller2d6DrdPlus;
 use Granam\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
 use DrdPlus\BaseProperties\Will;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
-use Granam\Tests\Tools\TestWithMockery;
+use Granam\TestWithMockery\TestWithMockery;
 
 class RollsOnFactoryTest extends TestWithMockery
 {

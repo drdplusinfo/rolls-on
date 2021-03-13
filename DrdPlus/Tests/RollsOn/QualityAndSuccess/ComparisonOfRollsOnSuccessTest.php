@@ -5,7 +5,7 @@ namespace DrdPlus\Tests\RollsOn\QualityAndSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\ComparisonOfRollsOnSuccess;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnSuccess;
-use Granam\Tests\Tools\TestWithMockery;
+use Granam\TestWithMockery\TestWithMockery;
 
 class ComparisonOfRollsOnSuccessTest extends TestWithMockery
 {

@@ -9,7 +9,7 @@ use DrdPlus\RollsOn\QualityAndSuccess\Requirements\Ride;
 use DrdPlus\RollsOn\QualityAndSuccess\Requirements\RidingSkill;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnAnimalControl;
 use DrdPlus\RollsOn\Traps\RollOnAgility;
-use Granam\Tests\Tools\TestWithMockery;
+use Granam\TestWithMockery\TestWithMockery;
 
 class RollOnAnimalControlTest extends TestWithMockery
 {

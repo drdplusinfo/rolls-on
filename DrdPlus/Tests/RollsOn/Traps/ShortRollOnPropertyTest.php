@@ -7,7 +7,7 @@ use DrdPlus\BaseProperties\BaseProperty;
 use DrdPlus\BaseProperties\Property;
 use DrdPlus\RollsOn\QualityAndSuccess\RollOnQuality;
 use DrdPlus\RollsOn\Traps\ShortRollOnProperty;
-use Granam\Tests\Tools\TestWithMockery;
+use Granam\TestWithMockery\TestWithMockery;
 
 abstract class ShortRollOnPropertyTest extends TestWithMockery
 {

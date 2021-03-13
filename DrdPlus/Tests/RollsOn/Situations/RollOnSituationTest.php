@@ -3,7 +3,7 @@
 namespace DrdPlus\Tests\RollsOn\Situations;
 
 use Granam\DiceRolls\Templates\Rolls\Roll2d6DrdPlus;
-use Granam\Tests\Tools\TestWithMockery;
+use Granam\TestWithMockery\TestWithMockery;
 
 abstract class RollOnSituationTest extends TestWithMockery
 {
